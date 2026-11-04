@@ -6,19 +6,30 @@ The study measures what post-quantum (PQ) authentication of IoT records costs on
 
 ## Key results
 
-| Design | Gas per record | Records per transaction |
-|---|---:|---:|
-| ECDSA, one signature per record (batched) | 9,211 | 1,816 |
-| ML-DSA-44, one signature per record, Solidity verifier | 0.9M - 8.2M | 2 - 18 |
-| ML-DSA-44, one signature per record, precompile (EIP-8355) | 107,090 | 159 |
-| ML-DSA-44, device-signed Merkle root over 100 records, precompile | 2,813 | 6,000 |
-| ML-DSA-44, device-signed Merkle root over 1,000 records, Solidity verifier | 2,447 | - |
+Gas per record (revised version; device-signed roots compared with ECDSA in the same design):
 
-With device-signed Merkle roots, PQ authentication is cheaper than per-record ECDSA **with today's Solidity verifiers**, i.e. without any protocol change.
+| Design | ECDSA | ML-DSA-44, precompile | LMS-H10-W4, Solidity (today) |
+|---|---:|---:|---:|
+| One signature per record, batches of 50 | 10,519 | 112,663 | - |
+| Device-signed roots, leaves posted, k = 1,000 | 1,448 | 1,527 | 1,764 |
+| Device-signed roots, leaves posted, k = 100 | 1,533 | 2,832 | 4,684 |
+| Device-signed roots, root only, k = 100 | 245 | 1,030 (key on-chain) | 3,328 |
+
+Post-quantum device authentication is deployable today (LMS verified in Solidity) at a premium that device-side batching keeps to a few thousand gas per record.
 
 ## Repository layout
 
 ```
+onchain/ (revision)
+  PQAnchor2.sol                 device-signed roots with replay-protected messages (chain id, contract,
+                                device, epoch, root, count), leaf-free and leaf-posting variants,
+                                keys in calldata or on-chain (SSTORE2), PQ-authorized registration
+  LMSVerifier.sol               RFC 8554 LMS verifier in Solidity (SHA-256 precompile) + gas Meter
+  lms_signer.py                 LMS signing service (hsslms) used by the harness
+  pq_gasbench2.mjs              revision experiments (DR-L / DR-0 / DR-0C, registration, max devices)
+  validate_exact.mjs            empirical check of the verification-cost substitution
+  dr_k1000.mjs                  DR-L at k = 1,000 with 4 devices per transaction
+  results2/                     revision results (CSV/JSON)
 offchain/
   pq_device_bench.py            device-side sign/verify time and sizes (liboqs), root-signing cost
   results/                      measured CSV/JSON
@@ -49,23 +60,33 @@ On-chain (Node.js 20+):
 ```sh
 cd onchain
 npm install
-node pq_gasbench.mjs --out results                          # ~10 min; --quick for a smoke test
+node pq_gasbench.mjs --out results                          # first version (per-record design), ~10 min
+node pq_gasbench2.mjs --out results2                        # revision experiments, ~15 min
+node validate_exact.mjs --out results2 && node dr_k1000.mjs --out results2
 ./reproduce_solidity_verifiers.sh                           # needs Foundry + solc 0.8.25/0.8.30
 ```
 
 Figures:
 ```sh
-cd figures && python3 make_figures.py --onchain ../onchain/results --offchain ../offchain/results --out out
+cd figures && python3 make_figures.py --onchain ../onchain/results --onchain2 ../onchain/results2 --offchain ../offchain/results --out out
 pdflatex fig1_designs.tex
 ```
 
 Gas results are deterministic. The harness checks the EIP-7623 pricing formula against the EVM on every PQ transaction (189/189 exact in the published run). Device timings depend on the hardware.
 
+## Device benchmark on ARM64 without hardware
+
+`.github/workflows/device-bench.yml` runs `offchain/pq_device_bench.py` on GitHub-hosted runners
+(ARM64 Cobalt 100 / Neoverse N2, and x86-64), free for public repositories: Actions tab ->
+`device-bench` -> Run workflow, then download the artifacts. These are server-class ARM cores,
+not IoT devices; Cortex-M4 figures are taken from pqm4.
+
 ## Notes
 
 - PQ verification in the harness is priced by substitution: the contract calls an empty account with the full EIP-8355 input, so calldata, memory, hashing, registry and anchoring costs are measured; the verification gas of each implementation (reproduced Solidity verifiers or proposed precompile prices) is then added. ECDSA is verified for real with `ecrecover`.
 - The ZKNOX Solidity verifiers are third-party, experimental and unaudited; they are not included in this repository and are fetched by `reproduce_solidity_verifiers.sh` at pinned commits.
-- `PQAnchor.sol` is research code, not audited. Production use should add domain separation between Merkle leaves and internal nodes.
+- `PQAnchor.sol`, `PQAnchor2.sol` and `LMSVerifier.sol` are research code, not audited. `PQAnchor2.sol` uses domain-separated Merkle nodes (leaf = keccak(0x00 || record), node = keccak(0x01 || left || right)).
+- LMS is stateful: a device must persist its one-time-key counter before releasing each signature.
 
 ## License
 

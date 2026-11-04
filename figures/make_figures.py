@@ -86,45 +86,43 @@ def fig_breakdown(on, out, n=50):
     ax.set_yticks([l[0] for l in labels]); ax.set_yticklabels([l[1] for l in labels]); ax.tick_params(axis="y", length=0)
     ax.xaxis.set_major_formatter(thousands); ax.set_xlabel(f"Gas per record (batches of $n$ = {n} records from 10 devices)")
     ax.set_xlim(0, 400_000); ax.grid(True, axis="x", lw=0.4, color="0.85"); ax.set_axisbelow(True)
-    ax.legend(loc="lower right", ncol=1)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=3, borderaxespad=0.3)
     fig.tight_layout(); save(fig, out, "fig3_per_record_breakdown")
 
 
-# ------------------------------------------------------------------ Fig. 4: device-root amortization
-def fig_device_root(on, out):
-    dr = read(os.path.join(on, "pq_device_root.csv"))
-    pr = read(os.path.join(on, "pq_per_record.csv"))
-    ecdsa_pr = min(int(r["per_record"]) for r in pr if r["scheme"] == "ECDSA")
-    series = [
-        ("ML-DSA-44", "Solidity, NIST (ZKNOX main)", "ML-DSA-44, Solidity NIST (main)", dict(color=OK["sky"], marker="v", ls=":")),
-        ("ML-DSA-44", "Solidity, NIST (ZKNOX optimized)", "ML-DSA-44, Solidity NIST (optimized)", dict(color=OK["blue"], marker="s", ls="--")),
-        ("Falcon-512", "Solidity, EVM-friendly (ZKNOX)", "Falcon-512, Solidity EVM-friendly", dict(color=OK["orange"], marker="^", ls="--")),
-        ("SLH-DSA-128s", "no verifier (data cost only)", "SLH-DSA-128s, data cost only", dict(color=OK["green"], marker="P", ls="-.")),
-        ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, precompile (EIP-8355)", dict(color=OK["blue"], marker="s", ls="-")),
-        ("Falcon-512", "Precompile EIP-8052", "Falcon-512, precompile (EIP-8052)", dict(color=OK["orange"], marker="^", ls="-")),
-        ("ECDSA", "ecrecover (real)", "ECDSA secp256k1, device-signed root", dict(color=OK["black"], marker="o", ls="-")),
-    ]
-    fig, ax = plt.subplots(figsize=(174 * MM, 70 * MM))
-    for s, impl, lab, st in series:
-        pts = sorted((int(r["k"]), int(r["per_record"]), r["fits_cap"] == "true") for r in dr if r["scheme"] == s and r["impl"] == impl)
-        if not pts: continue
-        ax.plot([p[0] for p in pts], [p[1] for p in pts], label=lab, mfc="white", **st)
-        for k, g, fit in pts:
-            if fit: ax.plot([k], [g], marker=st["marker"], color=st["color"], ls="none")
-    ax.axhline(ecdsa_pr, color=OK["verm"], lw=1.0, ls=(0, (5, 2)), label=f"ECDSA, one signature per record: {ecdsa_pr:,}")
-    ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlim(0.85, 1250); ax.set_ylim(800, 2.0e7)
-    ax.set_xticks([1, 10, 100, 1000]); ax.set_xticklabels(["1", "10", "100", "1,000"])
-    ax.yaxis.set_major_formatter(thousands); ax.yaxis.set_minor_formatter(NullFormatter())
-    ax.set_xlabel("Records per device-signed root, $k$ (10 devices per transaction)"); ax.set_ylabel("Gas per record")
-    ax.grid(True, which="major", lw=0.4, color="0.85"); ax.grid(True, which="minor", lw=0.25, color="0.93"); ax.set_axisbelow(True)
-    ax.legend(loc="upper right", ncol=2, handlelength=2.6, columnspacing=1.0)
-    fig.tight_layout(); save(fig, out, "fig4_device_root")
+# ------------------------------------------------------------------ Fig. 4: device-signed roots
+def fig_device_root(on2, out):
+    rows = read(os.path.join(on2, "pq2_dr.csv")) + read(os.path.join(on2, "pq2_dr_k1000_m4.csv"))
+    S = [("ECDSA", "ecrecover", "ECDSA secp256k1 (same design)", dict(color=OK["black"], marker="o", ls="-")),
+         ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, precompile EIP-8355", dict(color=OK["blue"], marker="s", ls="-")),
+         ("Falcon-512", "Precompile EIP-8052", "Falcon-512, precompile EIP-8052", dict(color=OK["orange"], marker="^", ls="-")),
+         ("LMS-H10-W4", "Solidity LMS (real)", "LMS-H10-W4, Solidity (today)", dict(color=OK["green"], marker="D", ls="--")),
+         ("ML-DSA-44", "Solidity, NIST (optimized)", "ML-DSA-44, Solidity NIST (today)", dict(color=OK["sky"], marker="v", ls="--")),
+         ("Falcon-512", "Solidity, EVM-friendly", "Falcon-512, Solidity EVM-friendly (today)", dict(color=OK["pink"], marker="P", ls=":"))]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(174 * MM, 72 * MM), sharey=True)
+    for s_, impl, lab, st in S:
+        pts = sorted((int(r["k"]), int(r["per_record"])) for r in rows if r["variant"].startswith("DR-L") and r["scheme"] == s_ and r["impl"] == impl)
+        if pts: a.plot(*zip(*pts), label=lab, mfc="white", **st)
+        var = "DR-0 " if s_ in ("ECDSA", "LMS-H10-W4") else "DR-0C"
+        r1 = [r for r in rows if r["variant"].startswith(var) and r["scheme"] == s_ and r["impl"] == impl and int(r["k"]) == 1]
+        if r1:
+            tx = int(r1[0]["tx_gas"]); ks = [1, 10, 100, 1000, 10000]
+            b.plot(ks, [tx / (10 * k) for k in ks], mfc="white", **st)
+    for ax, t in ((a, "(a) leaves posted (DR-L)"), (b, "(b) root only (DR-0); PQ keys stored on-chain")):
+        ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xticks([1, 10, 100, 1000, 10000]); ax.set_xticklabels(["1", "10", "100", "1,000", "10,000"])
+        ax.yaxis.set_major_formatter(thousands); ax.yaxis.set_minor_formatter(NullFormatter())
+        ax.grid(True, which="major", lw=0.4, color="0.85"); ax.grid(True, which="minor", lw=0.25, color="0.93"); ax.set_axisbelow(True)
+        ax.set_xlabel("Records per device-signed root, $k$"); ax.set_title(t, fontsize=8.5, loc="left")
+    a.set_xlim(0.8, 1400); b.set_xlim(0.8, 14000); a.set_ylim(1, 3e6); a.set_ylabel("Gas per record")
+    a.legend(loc="lower left", fontsize=6.6, handlelength=2.4)
+    fig.tight_layout(w_pad=1.0); save(fig, out, "fig4_device_root")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--onchain", default="../onchain/results"); ap.add_argument("--offchain", default="../offchain/results")
+    ap.add_argument("--onchain", default="../../pq/onchain/results"); ap.add_argument("--offchain", default="../offchain/results")
+    ap.add_argument("--onchain2", default="../onchain/results2")
     ap.add_argument("--out", default="out")
     a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
-    fig_device(a.offchain, a.out); fig_breakdown(a.onchain, a.out); fig_device_root(a.onchain, a.out)
+    fig_device(a.offchain, a.out); fig_breakdown(a.onchain, a.out); fig_device_root(a.onchain2, a.out)
     print("figures written to", a.out)

@@ -1,0 +1,149 @@
+variant,scheme,impl,devices,k,tx_gas,per_record,exec,zero_bytes,nonzero_bytes,fits_cap
+"DR-L (leaves posted, key in calldata)",ECDSA,ecrecover,10,1,259327,25933,198207,3574,1614,true
+"DR-L (leaves posted, key in calldata)",ECDSA,ecrecover,10,10,379276,3793,272088,3575,4493,true
+"DR-L (leaves posted, key in calldata)",ECDSA,ecrecover,10,100,1533046,1533,966366,3684,33184,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,1,1567520,156752,257226,3580,37768,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,1,12760064,1276006,12120456,3580,37768,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,1,9285154,928515,8645546,3580,37768,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,10,1683530,16835,334605,3553,40675,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,10,12883847,128838,12197835,3553,40675,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,10,9408937,94089,8722925,3553,40675,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,100,2832350,2832,1063864,3659,69369,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,100,14072634,14073,12927094,3659,69369,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,100,10597724,10598,9452184,3659,69369,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,1,2179940,217994,297716,3646,53062,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,10,2294540,22945,376642,3666,55922,true
+"DR-L (leaves posted, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,100,3443270,3443,1121369,3775,84613,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,Precompile EIP-8052,10,1,707790,70779,210771,3651,16257,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,1,15947847,1594785,15652131,3651,16257,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,Precompile EIP-8052,10,10,822780,8228,286533,3658,19130,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,10,16069605,160696,15727893,3658,19130,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,Precompile EIP-8052,10,100,1972710,1973,999620,3727,47861,true
+"DR-L (leaves posted, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,100,17242664,17243,16440980,3727,47861,false
+"DR-L (leaves posted, key in calldata)",SLH-DSA-128s,none (data cost only),10,1,3229870,322987,197514,3635,79313,true
+"DR-L (leaves posted, key in calldata)",SLH-DSA-128s,none (data cost only),10,10,3344620,33446,275772,3650,82178,true
+"DR-L (leaves posted, key in calldata)",SLH-DSA-128s,none (data cost only),10,100,4493680,4494,1013820,3748,110880,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,1,3846879,384688,3055855,3762,47186,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,10,3941414,39414,3103998,3736,50092,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,100,5151592,5152,3854492,3829,78799,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,1,3445981,344598,2991569,3653,26175,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,10,3581171,35812,3081051,3684,29024,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,100,4684450,4684,3724550,3769,57739,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,1,15123746,1512375,14837874,3618,15650,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,10,14521738,145217,14189702,3611,18537,true
+"DR-L (leaves posted, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,100,16006230,16006,15214798,3728,47220,true
+"DR-0 (root only, key in calldata)",ECDSA,ecrecover,10,1,245087,24509,189183,3582,1286,true
+"DR-0 (root only, key in calldata)",ECDSA,ecrecover,10,10,245087,2451,189183,3582,1286,true
+"DR-0 (root only, key in calldata)",ECDSA,ecrecover,10,100,245087,245,189183,3582,1286,true
+"DR-0 (root only, key in calldata)",ECDSA,ecrecover,10,1000,245087,25,189183,3582,1286,true
+"DR-0 (root only, key in calldata)",ECDSA,ecrecover,10,10000,245087,2,189183,3582,1286,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,1,1554390,155439,248046,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,10,1554390,15544,248046,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,100,1554390,1554,248046,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,1000,1554390,155,248046,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,Precompile EIP-8355,10,10000,1554390,16,248046,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,1,12745632,1274563,12111276,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,10,12745632,127456,12111276,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,100,12745632,12746,12111276,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,1000,12745632,1275,12111276,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, NIST (optimized)",10,10000,12745632,127,12111276,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,1,9270722,927072,8636366,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,10,9270722,92707,8636366,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,100,9270722,9271,8636366,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,1000,9270722,927,8636366,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,10000,9270722,93,8636366,3591,37437,true
+"DR-0 (root only, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,1,2166600,216660,288467,3664,52724,true
+"DR-0 (root only, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,10,2166600,21666,288467,3664,52724,true
+"DR-0 (root only, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,100,2166600,2167,288467,3664,52724,true
+"DR-0 (root only, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,1000,2166600,217,288467,3664,52724,true
+"DR-0 (root only, key in calldata)",ML-DSA-65,Precompile EIP-8355,10,10000,2166600,22,288467,3664,52724,true
+"DR-0 (root only, key in calldata)",Falcon-512,Precompile EIP-8052,10,1,695170,69517,201663,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,Precompile EIP-8052,10,10,695170,6952,201663,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,Precompile EIP-8052,10,100,695170,695,201663,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,Precompile EIP-8052,10,1000,695170,70,201663,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,Precompile EIP-8052,10,10000,695170,7,201663,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,1,15933691,1593369,15643023,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,10,15933691,159337,15643023,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,100,15933691,15934,15643023,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,1000,15933691,1593,15643023,3645,15943,true
+"DR-0 (root only, key in calldata)",Falcon-512,"Solidity, EVM-friendly",10,10000,15933691,159,15643023,3645,15943,true
+"DR-0 (root only, key in calldata)",SLH-DSA-128s,none (data cost only),10,1,3217100,321710,188295,3634,78994,true
+"DR-0 (root only, key in calldata)",SLH-DSA-128s,none (data cost only),10,10,3217100,32171,188295,3634,78994,true
+"DR-0 (root only, key in calldata)",SLH-DSA-128s,none (data cost only),10,100,3217100,3217,188295,3634,78994,true
+"DR-0 (root only, key in calldata)",SLH-DSA-128s,none (data cost only),10,1000,3217100,322,188295,3634,78994,true
+"DR-0 (root only, key in calldata)",SLH-DSA-128s,none (data cost only),10,10000,3217100,32,188295,3634,78994,true
+"DR-0 (root only, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,1,3825144,382514,3039048,3746,46882,true
+"DR-0 (root only, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,10,3825144,38251,3039048,3746,46882,true
+"DR-0 (root only, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,100,3825144,3825,3039048,3746,46882,true
+"DR-0 (root only, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,1000,3825144,383,3039048,3746,46882,true
+"DR-0 (root only, key in calldata)",LMS-H10-W2,Solidity LMS (real),10,10000,3825144,38,3039048,3746,46882,true
+"DR-0 (root only, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,1,3327596,332760,2878436,3664,25844,true
+"DR-0 (root only, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,10,3327596,33276,2878436,3664,25844,true
+"DR-0 (root only, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,100,3327596,3328,2878436,3664,25844,true
+"DR-0 (root only, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,1000,3327596,333,2878436,3664,25844,true
+"DR-0 (root only, key in calldata)",LMS-H10-W4,Solidity LMS (real),10,10000,3327596,33,2878436,3664,25844,true
+"DR-0 (root only, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,1,15109528,1510953,14828704,3612,15336,true
+"DR-0 (root only, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,10,15109528,151095,14828704,3612,15336,true
+"DR-0 (root only, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,100,15109528,15110,14828704,3612,15336,true
+"DR-0 (root only, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,1000,15109528,1511,14828704,3612,15336,true
+"DR-0 (root only, key in calldata)",LMS-H10-W8,Solidity LMS (real),10,10000,15109528,151,14828704,3612,15336,true
+"DR-0C (root only, key on-chain)",ECDSA,ecrecover,10,1,284106,28411,232050,3476,1072,true
+"DR-0C (root only, key on-chain)",ECDSA,ecrecover,10,10,284106,2841,232050,3476,1072,true
+"DR-0C (root only, key on-chain)",ECDSA,ecrecover,10,100,284106,284,232050,3476,1072,true
+"DR-0C (root only, key on-chain)",ECDSA,ecrecover,10,1000,284106,28,232050,3476,1072,true
+"DR-0C (root only, key on-chain)",ECDSA,ecrecover,10,10000,284106,3,232050,3476,1072,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,Precompile EIP-8355,10,1,1029800,102980,284126,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,Precompile EIP-8355,10,10,1029800,10298,284126,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,Precompile EIP-8355,10,100,1029800,1030,284126,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,Precompile EIP-8355,10,1000,1029800,103,284126,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,Precompile EIP-8355,10,10000,1029800,10,284126,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, NIST (optimized)",10,1,12571876,1257188,12147356,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, NIST (optimized)",10,10,12571876,125719,12147356,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, NIST (optimized)",10,100,12571876,12572,12147356,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, NIST (optimized)",10,1000,12571876,1257,12147356,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, NIST (optimized)",10,10000,12571876,126,12147356,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,1,9096966,909697,8672446,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,10,9096966,90970,8672446,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,100,9096966,9097,8672446,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,1000,9096966,910,8672446,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44,"Solidity, EVM-friendly (optimized)",10,10000,9096966,91,8672446,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-65,Precompile EIP-8355,10,1,1386040,138604,319333,3656,33212,true
+"DR-0C (root only, key on-chain)",ML-DSA-65,Precompile EIP-8355,10,10,1386040,13860,319333,3656,33212,true
+"DR-0C (root only, key on-chain)",ML-DSA-65,Precompile EIP-8355,10,100,1386040,1386,319333,3656,33212,true
+"DR-0C (root only, key on-chain)",ML-DSA-65,Precompile EIP-8355,10,1000,1386040,139,319333,3656,33212,true
+"DR-0C (root only, key on-chain)",ML-DSA-65,Precompile EIP-8355,10,10000,1386040,14,319333,3656,33212,true
+"DR-0C (root only, key on-chain)",Falcon-512,Precompile EIP-8052,10,1,386761,38676,240745,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,Precompile EIP-8052,10,10,386761,3868,240745,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,Precompile EIP-8052,10,100,386761,387,240745,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,Precompile EIP-8052,10,1000,386761,39,240745,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,Precompile EIP-8052,10,10000,386761,4,240745,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,"Solidity, EVM-friendly",10,1,15828121,1582812,15682105,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,"Solidity, EVM-friendly",10,10,15828121,158281,15682105,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,"Solidity, EVM-friendly",10,100,15828121,15828,15682105,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,"Solidity, EVM-friendly",10,1000,15828121,1583,15682105,3326,6982,true
+"DR-0C (root only, key on-chain)",Falcon-512,"Solidity, EVM-friendly",10,10000,15828121,158,15682105,3326,6982,true
+"DR-0C (root only, key on-chain)",SLH-DSA-128s,none (data cost only),10,1,3204090,320409,230968,3641,78667,true
+"DR-0C (root only, key on-chain)",SLH-DSA-128s,none (data cost only),10,10,3204090,32041,230968,3641,78667,true
+"DR-0C (root only, key on-chain)",SLH-DSA-128s,none (data cost only),10,100,3204090,3204,230968,3641,78667,true
+"DR-0C (root only, key on-chain)",SLH-DSA-128s,none (data cost only),10,1000,3204090,320,230968,3641,78667,true
+"DR-0C (root only, key on-chain)",SLH-DSA-128s,none (data cost only),10,10000,3204090,32,230968,3641,78667,true
+"DR-0C (root only, key on-chain)",LMS-H10-W2,Solidity LMS (real),10,1,3878815,387882,3101459,3621,46367,true
+"DR-0C (root only, key on-chain)",LMS-H10-W2,Solidity LMS (real),10,10,3878815,38788,3101459,3621,46367,true
+"DR-0C (root only, key on-chain)",LMS-H10-W2,Solidity LMS (real),10,100,3878815,3879,3101459,3621,46367,true
+"DR-0C (root only, key on-chain)",LMS-H10-W2,Solidity LMS (real),10,1000,3878815,388,3101459,3621,46367,true
+"DR-0C (root only, key on-chain)",LMS-H10-W2,Solidity LMS (real),10,10000,3878815,39,3101459,3621,46367,true
+"DR-0C (root only, key on-chain)",LMS-H10-W4,Solidity LMS (real),10,1,3460686,346069,3020266,3539,25329,true
+"DR-0C (root only, key on-chain)",LMS-H10-W4,Solidity LMS (real),10,10,3460686,34607,3020266,3539,25329,true
+"DR-0C (root only, key on-chain)",LMS-H10-W4,Solidity LMS (real),10,100,3460686,3461,3020266,3539,25329,true
+"DR-0C (root only, key on-chain)",LMS-H10-W4,Solidity LMS (real),10,1000,3460686,346,3020266,3539,25329,true
+"DR-0C (root only, key on-chain)",LMS-H10-W4,Solidity LMS (real),10,10000,3460686,35,3020266,3539,25329,true
+"DR-0C (root only, key on-chain)",LMS-H10-W8,Solidity LMS (real),10,1,15384529,1538453,15112361,3480,14828,true
+"DR-0C (root only, key on-chain)",LMS-H10-W8,Solidity LMS (real),10,10,15384529,153845,15112361,3480,14828,true
+"DR-0C (root only, key on-chain)",LMS-H10-W8,Solidity LMS (real),10,100,15384529,15385,15112361,3480,14828,true
+"DR-0C (root only, key on-chain)",LMS-H10-W8,Solidity LMS (real),10,1000,15384529,1538,15112361,3480,14828,true
+"DR-0C (root only, key on-chain)",LMS-H10-W8,Solidity LMS (real),10,10000,15384529,154,15112361,3480,14828,true
+"DR-0C (root only, key on-chain)",ML-DSA-44 (EIP-8051 key),Precompile EIP-8051,10,1,1141445,114145,716925,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44 (EIP-8051 key),Precompile EIP-8051,10,10,1141445,11414,716925,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44 (EIP-8051 key),Precompile EIP-8051,10,100,1141445,1141,716925,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44 (EIP-8051 key),Precompile EIP-8051,10,1000,1141445,114,716925,3584,24324,true
+"DR-0C (root only, key on-chain)",ML-DSA-44 (EIP-8051 key),Precompile EIP-8051,10,10000,1141445,11,716925,3584,24324,true
