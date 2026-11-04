@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite the article below."
+title: "pq-iot-auth: cost of post-quantum authentication of IoT data on Ethereum"
+authors:
+  - family-names: Sie
+    given-names: Ming-Fong
+    orcid: "https://orcid.org/0009-0006-8735-9332"
+    affiliation: "Chung Yuan Christian University"
+license: MIT
+repository-code: "https://github.com/Siemingfong/pq-iot-auth"
+preferred-citation:
+  type: article
+  title: "Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"
+  authors:
+    - family-names: Sie
+      given-names: Ming-Fong
+      orcid: "https://orcid.org/0009-0006-8735-9332"
+  year: 2026
+  notes: "Manuscript submitted for publication"
