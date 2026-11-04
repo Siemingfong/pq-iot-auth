@@ -1,0 +1,44 @@
+# Device-side benchmark on GitHub-hosted runners: ARM64 (Cobalt 100, Neoverse N2) and x86-64.
+# Free for public repositories. Run manually: Actions tab -> device-bench -> Run workflow.
+# Results (CSV/JSON + lscpu) are uploaded as artifacts, one per runner.
+name: device-bench
+on:
+  workflow_dispatch:
+jobs:
+  bench:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04-arm, ubuntu-24.04]
+    runs-on: ${{ matrix.runner }}
+    env:
+      OQS_INSTALL_PATH: /usr/local
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build liboqs 0.16.0 (signature schemes used in the paper)
+        run: |
+          sudo apt-get update && sudo apt-get install -y cmake ninja-build
+          git clone --depth 1 -b 0.16.0 https://github.com/open-quantum-safe/liboqs.git
+          cmake -S liboqs -B liboqs/build -GNinja -DBUILD_SHARED_LIBS=ON -DOQS_BUILD_ONLY_LIB=ON -DOQS_USE_OPENSSL=OFF \
+            -DOQS_MINIMAL_BUILD="SIG_ml_dsa_44;SIG_ml_dsa_65;SIG_ml_dsa_87;SIG_falcon_512;SIG_falcon_1024;SIG_slh_dsa_pure_sha2_128s;SIG_slh_dsa_pure_sha2_128f"
+          ninja -C liboqs/build && sudo ninja -C liboqs/build install && sudo ldconfig
+      - name: Install Python packages
+        run: |
+          git clone --depth 1 -b 0.16.0 https://github.com/open-quantum-safe/liboqs-python.git
+          pip install ./liboqs-python coincurve cryptography pycryptodome
+      - name: Record hardware
+        run: |
+          mkdir -p bench-out
+          lscpu > bench-out/lscpu.txt
+          nproc >> bench-out/lscpu.txt
+      - name: Run device benchmark
+        run: |
+          cd offchain
+          python3 pq_device_bench.py --out ../bench-out/results-${{ matrix.runner }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: device-bench-${{ matrix.runner }}
+          path: bench-out/
