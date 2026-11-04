@@ -1,9 +1,15 @@
 # Device-side benchmark on GitHub-hosted runners: ARM64 (Cobalt 100, Neoverse N2) and x86-64.
-# Free for public repositories. Run manually: Actions tab -> device-bench -> Run workflow.
+# Free for public repositories. Runs automatically when this file or the benchmark script is pushed,
+# or manually: Actions tab -> device-bench -> Run workflow.
 # Results (CSV/JSON + lscpu) are uploaded as artifacts, one per runner.
 name: device-bench
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/device-bench.yml
+      - offchain/pq_device_bench.py
 jobs:
   bench:
     strategy:
