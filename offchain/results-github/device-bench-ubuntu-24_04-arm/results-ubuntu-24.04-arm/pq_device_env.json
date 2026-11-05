@@ -1,9 +1,9 @@
 {
-  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
-  "python": "3.12.3",
+  "cpu": "unknown",
+  "python": "3.12.15",
   "liboqs": "0.16.0",
   "liboqs_python": "0.16.0",
   "coincurve": "21.0.0",
-  "cryptography": "46.0.6",
+  "cryptography": "50.0.2",
   "record_bytes": 116
 }
