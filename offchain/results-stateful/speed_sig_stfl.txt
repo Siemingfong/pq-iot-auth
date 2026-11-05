@@ -1,0 +1,26 @@
+# liboqs 0.16.0 speed_sig_stfl, one x86-64 core (Intel(R) Xeon(R) Processor @ 2.80GHz), 2026-11-05
+## LMS_SHA256_H10_W4
+keypair                              |          3 |          1.488 |      496031.667 |  10944.165 |                1388886152 |   30643700
+sign                                 |          3 |          1.484 |      494666.333 |  18714.703 |                1385063785 |   52400611
+verify                               |       4323 |          1.000 |         231.356 |     14.830 |                    647688 |      41495
+public key bytes: 60, secret key bytes: 64, signature bytes: 2512
+## LMS_SHA256_H10_W8
+keypair                              |          1 |          3.644 |     3644068.000 |      0.000 |                1613445438 |          0
+sign                                 |          1 |          3.640 |     3640210.000 |      0.000 |                1602644394 |          0
+verify                               |        501 |          1.002 |        1999.862 |     26.054 |                   5599458 |      72882
+public key bytes: 60, secret key bytes: 64, signature bytes: 1456
+## LMS_SHA256_H15_W4
+keypair                              |          1 |         14.994 |    14994119.000 |      0.000 |                3328795211 |          0
+sign                                 |          1 |         15.082 |    15082390.000 |      0.000 |                3575954652 |          0
+verify                               |       3755 |          1.000 |         266.370 |     13.776 |                    745726 |      38538
+public key bytes: 60, secret key bytes: 64, signature bytes: 2672
+## LMS_SHA256_H10_W4_H10_W4
+keypair                              |          3 |          1.397 |      465536.667 |    292.830 |                1303500506 |     819949
+sign                                 |          2 |          1.990 |      994850.500 |  15491.500 |                2785578100 |   43374927
+verify                               |       2138 |          1.000 |         467.902 |     18.907 |                   1310016 |      52933
+public key bytes: 60, secret key bytes: 64, signature bytes: 5076
+## XMSS-SHA2_10_256
+keypair                              |          1 |          2.564 |     2564107.000 |      0.000 |                2884525810 |          0
+sign                                 |        112 |          1.010 |        9020.929 |   5060.791 |                  25258318 |   14170006
+verify                               |        706 |          1.001 |        1417.180 |     75.456 |                   3967962 |     211198
+public key bytes: 68, secret key bytes: 1377, signature bytes: 2500

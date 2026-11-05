@@ -10,7 +10,7 @@ Gas per record (revised version; device-signed roots compared with ECDSA in the 
 
 | Design | ECDSA | ML-DSA-44, precompile | LMS-H10-W4, Solidity (today) |
 |---|---:|---:|---:|
-| One signature per record, batches of 50 | 10,519 | 112,663 | - |
+| One signature per record, batches of 50 | 12,971 | 112,490 | 326,555 |
 | Device-signed roots, leaves posted, k = 1,000 | 1,448 | 1,527 | 1,764 |
 | Device-signed roots, leaves posted, k = 100 | 1,533 | 2,832 | 4,684 |
 | Device-signed roots, root only, k = 100 | 245 | 1,030 (key on-chain) | 3,328 |
@@ -30,6 +30,9 @@ onchain/ (revision)
   validate_exact.mjs            empirical check of the verification-cost substitution
   dr_k1000.mjs                  DR-L at k = 1,000 with 4 devices per transaction
   results2/                     revision results (CSV/JSON)
+  PQAnchor3.sol, LMSVerifier2.sol, pq_gasbench3.mjs, pr_warm.mjs, results3/
+                                v2.2: replay-protected per-record signatures, LMS-H15 and HSS,
+                                worst-case LMS verification
 offchain/
   pq_device_bench.py            device-side sign/verify time and sizes (liboqs), root-signing cost
   results/                      measured CSV/JSON
