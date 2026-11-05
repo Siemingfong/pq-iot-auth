@@ -25,7 +25,7 @@ def save(fig, out, name):
 
 # ------------------------------------------------------------------ Fig. 2: device-side costs
 def fig_device(off, out):
-    rows = read(os.path.join(off, "pq_device.csv"))
+    rows = read(os.path.join(off, "pq_device_c.csv"))
     order = ["ECDSA secp256k1", "ECDSA P-256", "ML-DSA-44", "ML-DSA-65", "ML-DSA-87",
              "Falcon-512", "Falcon-1024", "SLH-DSA-SHA2-128f", "SLH-DSA-SHA2-128s"]
     R = {r["scheme"]: r for r in rows}
@@ -35,7 +35,7 @@ def fig_device(off, out):
     y = list(range(len(order)))[::-1]
     a.barh(y, [float(R[n]["sign_ms"]) for n in order], color=col, height=0.62, edgecolor="black", lw=0.4)
     a.barh([v - 0.0 for v in y], [float(R[n]["verify_ms"]) for n in order], height=0.25, color="white", edgecolor="black", lw=0.4, hatch="////")
-    a.set_xscale("log"); a.set_yticks(y); a.set_yticklabels(names); a.set_xlabel("Time on one desktop core (ms, log scale)")
+    a.set_xscale("log"); a.set_yticks(y); a.set_yticklabels(names); a.set_xlabel("Time on one x86-64 core, C implementations (ms, log scale)")
     a.set_xlim(0.01, 20000); a.grid(True, axis="x", which="major", lw=0.4, color="0.85"); a.set_axisbelow(True)
     a.tick_params(axis="y", length=0)
     for yi, n in zip(y, order):
@@ -59,32 +59,28 @@ def fig_device(off, out):
     fig.tight_layout(w_pad=1.0); save(fig, out, "fig2_device")
 
 
-# ------------------------------------------------------------------ Fig. 3: per-record breakdown
-def fig_breakdown(on, out, n=50):
-    rows = [r for r in read(os.path.join(on, "pq_per_record.csv")) if int(r["n"]) == n]
-    pick = [("ECDSA", "ecrecover (real)", "ECDSA secp256k1"),
-            ("Falcon-512", "Precompile EIP-8052", "Falcon-512, EIP-8052"),
-            ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, EIP-8355"),
-            ("ML-DSA-65", "Precompile EIP-8355", "ML-DSA-65, EIP-8355"),
-            ("ML-DSA-87", "Precompile EIP-8355", "ML-DSA-87, EIP-8355"),
-            ("SLH-DSA-128s", "no verifier (data cost only)", "SLH-DSA-128s, data only")]
-    R = {(r["scheme"], r["impl"]): r for r in rows}
-    fig, ax = plt.subplots(figsize=(174 * MM, 52 * MM))
-    labels = []
-    for i, (s, impl, lab) in enumerate(pick):
-        r = R.get((s, impl))
+# ------------------------------------------------------------------ Fig. 3: per-record breakdown (revised contract)
+def fig_breakdown(prjson, out, n=50):
+    import json
+    d = json.load(open(prjson))
+    rows = {(r["scheme"], r["impl"]): r for r in d["pr"] if r["config"] == "n=50" and r.get("gas")}
+    pick = [("ECDSA", "ecrecover", "ECDSA secp256k1"), ("Falcon-512", "Precompile EIP-8052", "Falcon-512, EIP-8052"),
+            ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, EIP-8355"), ("ML-DSA-65", "Precompile EIP-8355", "ML-DSA-65, EIP-8355"),
+            ("ML-DSA-87", "Precompile EIP-8355", "ML-DSA-87, EIP-8355"), ("LMS-H10-W4", "Solidity LMS (real)", "LMS-H10-W4, Solidity"),
+            ("SLH-DSA-128s", "none (data cost only)", "SLH-DSA-128s, data only")]
+    fig, ax = plt.subplots(figsize=(174 * MM, 58 * MM)); labels = []
+    for i, (s_, impl, lab) in enumerate(pick):
+        r = rows.get((s_, impl))
         if r is None: continue
-        exe, std, flo = int(r["execution"]) / n, int(r["calldata_standard"]) / n, int(r["calldata_floor"]) / n
-        top = max(0.0, flo - std - exe)              # EIP-7623 top-up when the floor binds
-        yi = len(pick) - 1 - i; labels.append((yi, lab))
+        z, nz, ex = r["zero_bytes"], r["nonzero_bytes"], r["exec"]
+        exe, std, flo = ex / n, (4 * z + 16 * nz) / n, (10 * z + 40 * nz) / n
+        top = max(0.0, flo - std - exe); yi = len(pick) - 1 - i; labels.append((yi, lab))
         ax.barh(yi, exe, color=OK["blue"], height=0.6, edgecolor="black", lw=0.4, label="execution" if i == 0 else None)
         ax.barh(yi, std, left=exe, color=OK["orange"], height=0.6, edgecolor="black", lw=0.4, label="calldata (standard price)" if i == 0 else None)
-        ax.barh(yi, top, left=exe + std, color="white", height=0.6, edgecolor=OK["verm"], hatch="xxxx", lw=0.6,
-                label="EIP-7623 floor top-up" if i == 0 else None)
-        tot = int(r["per_record"])
-        ax.text(exe + std + top + 1500, yi, f"{tot:,}", va="center", fontsize=7.5)
+        ax.barh(yi, top, left=exe + std, color="white", height=0.6, edgecolor=OK["verm"], hatch="xxxx", lw=0.6, label="EIP-7623 floor top-up" if i == 0 else None)
+        ax.text(max(exe + std + top, exe + std) + 1500, yi, f"{r['per_record']:,}", va="center", fontsize=7.5)
     ax.set_yticks([l[0] for l in labels]); ax.set_yticklabels([l[1] for l in labels]); ax.tick_params(axis="y", length=0)
-    ax.xaxis.set_major_formatter(thousands); ax.set_xlabel(f"Gas per record (batches of $n$ = {n} records from 10 devices)")
+    ax.xaxis.set_major_formatter(thousands); ax.set_xlabel(f"Gas per record (batches of $n$ = {n} records from 10 devices, replay-protected contract)")
     ax.set_xlim(0, 400_000); ax.grid(True, axis="x", lw=0.4, color="0.85"); ax.set_axisbelow(True)
     ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=3, borderaxespad=0.3)
     fig.tight_layout(); save(fig, out, "fig3_per_record_breakdown")
@@ -92,7 +88,7 @@ def fig_breakdown(on, out, n=50):
 
 # ------------------------------------------------------------------ Fig. 4: device-signed roots
 def fig_device_root(on2, out):
-    rows = read(os.path.join(on2, "pq2_dr.csv")) + read(os.path.join(on2, "pq2_dr_k1000_m4.csv"))
+    rows = read(os.path.join(on2, "pq4_dr.csv"))
     S = [("ECDSA", "ecrecover", "ECDSA secp256k1 (same design)", dict(color=OK["black"], marker="o", ls="-")),
          ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, precompile EIP-8355", dict(color=OK["blue"], marker="s", ls="-")),
          ("Falcon-512", "Precompile EIP-8052", "Falcon-512, precompile EIP-8052", dict(color=OK["orange"], marker="^", ls="-")),
@@ -121,8 +117,9 @@ def fig_device_root(on2, out):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--onchain", default="../../pq/onchain/results"); ap.add_argument("--offchain", default="../offchain/results")
-    ap.add_argument("--onchain2", default="../onchain/results2")
+    ap.add_argument("--onchain2", default="../onchain/results4")
+    ap.add_argument("--prjson", default="/home/claude/pq3/onchain/results3/pq3_pr_warm.json")
     ap.add_argument("--out", default="out")
     a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
-    fig_device(a.offchain, a.out); fig_breakdown(a.onchain, a.out); fig_device_root(a.onchain2, a.out)
+    fig_device(a.offchain, a.out); fig_breakdown(a.prjson, a.out); fig_device_root(a.onchain2, a.out)
     print("figures written to", a.out)

@@ -7,8 +7,7 @@ authors:
     orcid: "https://orcid.org/0009-0006-8735-9332"
     affiliation: "Chung Yuan Christian University"
 license: MIT
-doi: "10.5281/zenodo.23969084"
-version: "v2.2"
+version: "v2.3"
 repository-code: "https://github.com/Siemingfong/pq-iot-auth"
 preferred-citation:
   type: article

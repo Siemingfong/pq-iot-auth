@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3 (third self-review)
+- `LMSVerifier3.sol`: LMS/HSS for SHA-256 (n = 32) and SHA-256/192 (n = 24, SP 800-208); `test_lms3.mjs` checks valid, tampered and wrong-message inputs.
+- `pq_gasbench4.mjs`: all device-root variants re-measured on `PQAnchor3` (relaxed epoch rule), with P-256 (EIP-7951) and hybrid ECDSA + ML-DSA-44 / Falcon-512 rows, LMS n = 24, and the LMS worst-case regression with R^2. Results in `onchain/results4/`.
+- Device benchmark: liboqs C speed benchmark and OpenSSL P-256 (`offchain/results/speed_sig_c.txt`, `pq_device_c.csv`).
+- Figures 2-4 regenerated (Fig. 3 from the replay-protected contract).
+
 ## v2.2 (second self-review)
 - `PQAnchor3.sol`: per-record signatures with per-device sequence numbers (replay protection); epochs only need to increase (a withheld root no longer blocks later ones).
 - `LMSVerifier2.sol`: LMS of any height (H5-H25) and two-level HSS, executed for real; worst-case verification derived from a regression on Winternitz chain steps.

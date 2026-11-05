@@ -1,6 +1,6 @@
 # pq-iot-auth
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23969084.svg)](https://doi.org/10.5281/zenodo.23969084)
+Archived releases: v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084); v2.3: see Zenodo.
 
 Code and data for the article **"Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"** (M.-F. Sie, 2026, manuscript submitted).
 
@@ -13,9 +13,9 @@ Gas per record (revised version; device-signed roots compared with ECDSA in the 
 | Design | ECDSA | ML-DSA-44, precompile | LMS-H10-W4, Solidity (today) |
 |---|---:|---:|---:|
 | One signature per record, batches of 50 | 12,971 | 112,490 | 326,555 |
-| Device-signed roots, leaves posted, k = 1,000 | 1,448 | 1,527 | 1,764 |
-| Device-signed roots, leaves posted, k = 100 | 1,533 | 2,832 | 4,684 |
-| Device-signed roots, root only, k = 100 | 245 | 1,030 (key on-chain) | 3,328 |
+| Device-signed roots, leaves posted, k = 1,000 | 1,473 | 1,551 | 1,791 |
+| Device-signed roots, leaves posted, k = 100 | 1,558 | 2,831 | 4,675 |
+| Device-signed roots, root only, k = 100 | 245 | 1,031 (key on-chain) | 3,350 |
 
 Post-quantum device authentication is deployable today (LMS verified in Solidity) at a premium that device-side batching keeps to a few thousand gas per record.
 
@@ -32,6 +32,8 @@ onchain/ (revision)
   validate_exact.mjs            empirical check of the verification-cost substitution
   dr_k1000.mjs                  DR-L at k = 1,000 with 4 devices per transaction
   results2/                     revision results (CSV/JSON)
+  LMSVerifier3.sol, pq_gasbench4.mjs, test_lms3.mjs, results4/
+                                v2.3: LMS n = 24, P-256 and hybrid rows, relaxed-epoch re-run
   PQAnchor3.sol, LMSVerifier2.sol, pq_gasbench3.mjs, pr_warm.mjs, results3/
                                 v2.2: replay-protected per-record signatures, LMS-H15 and HSS,
                                 worst-case LMS verification
