@@ -1,6 +1,8 @@
 # pq-iot-auth
 
-Archived releases: v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084); v2.3: see Zenodo.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23970176.svg)](https://doi.org/10.5281/zenodo.23970176)
+
+Archived releases: v2.3 [10.5281/zenodo.23970176](https://doi.org/10.5281/zenodo.23970176) (cited in the manuscript); v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084).
 
 Code and data for the article **"Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"** (M.-F. Sie, 2026, manuscript submitted).
 
