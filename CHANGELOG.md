@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- `onchain/sepolia_measure.mjs` and `.github/workflows/sepolia.yml`: gas measurement on the Sepolia testnet (ECDSA, P-256, LMS-H10, LMS-H15, HSS) using the same transaction builders as `pq_gasbench10.mjs`; manual GitHub Actions workflow with a dry-run default. Tested end to end on a local anvil node (revm, Osaka rules), where it reproduces the EthereumJS figures.
+
 ## v2.7 (journal submission, 2026-11-06)
 - `pq_gasbench10.mjs`: draft precompiles (EIP-8355, EIP-8052, EIP-8051) registered as custom EVM precompiles that charge their proposed prices, so every transaction is executed end to end; runs under Osaka or Amsterdam (`--fork`). Under Osaka it reproduces the substituted figures within 0.02%. Results in `onchain/results10-osaka/` and `onchain/results10-amsterdam/` (Glamsterdam devnet-8 schedule as implemented in EthereumJS 10.1.3).
 - Fixed: the largest per-record P-256 batch was capped by the bisection's search range (600); the corrected value is 1,010 records.
