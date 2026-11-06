@@ -4,7 +4,7 @@
 {"key": ..., "msg": "<hex>"}                                                       -> {"sig": hex}"""
 import json, sys, time
 from hsslms import LMS_Priv, HSS_Priv, LMS_ALGORITHM_TYPE as L, LMOTS_ALGORITHM_TYPE as O
-H = {"H10": L.LMS_SHA256_M32_H10, "H15": L.LMS_SHA256_M32_H15, "M24H10": L.LMS_SHA256_M24_H10}
+H = {"H10": L.LMS_SHA256_M32_H10, "H15": L.LMS_SHA256_M32_H15, "M24H10": L.LMS_SHA256_M24_H10, "M24H15": L.LMS_SHA256_M24_H15}
 W = {"W2": O.LMOTS_SHA256_N32_W2, "W4": O.LMOTS_SHA256_N32_W4, "W8": O.LMOTS_SHA256_N32_W8,
      "N24W4": O.LMOTS_SHA256_N24_W4, "N24W8": O.LMOTS_SHA256_N24_W8, "N24W2": O.LMOTS_SHA256_N24_W2}
 keys = {}

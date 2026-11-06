@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased (sixth self-review)
+- `RFCTest.sol`, `test_rfc.mjs`, `rfc8554_vectors.json`: the Solidity LMS/HSS verifier passes the RFC 8554 Appendix F test vectors; differential fuzzing with 1,200 structurally mutated signatures (none accepted).
+- `pq_gasbench9.mjs`: per-record signatures with HSS H10/H10 (the configuration that lasts at 144 signatures per day) and LMS-H15 with SHA-256/192. Results in `onchain/results9/`.
+
 ## v2.5 (journal submission, 2026-11-06)
 - `PQAnchor5.sol`: Merkle hashing in place (no memory growth per hash), leaves copied with calldatacopy in the packed path, P-256 verified for real via the EIP-7951 precompile, no key load in no-verification modes.
 - `pq_gasbench7.mjs`: all main tables re-measured on PQAnchor5, with real P-256 and per-record cost at the largest batch; every transaction checked for skipped devices/records. Results in `onchain/results7/`.

@@ -1,0 +1,22 @@
+{
+  "rfc": [
+    {
+      "test_case": 1,
+      "valid_accepted": true,
+      "wrong_message": false,
+      "tampered_signature": false
+    },
+    {
+      "test_case": 2,
+      "valid_accepted": true,
+      "wrong_message": false,
+      "tampered_signature": false
+    }
+  ],
+  "fuzz": {
+    "cases": 1200,
+    "accepted": 0,
+    "rejected_false": 399,
+    "reverted": 801
+  }
+}
