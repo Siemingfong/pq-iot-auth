@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased (fifth self-review; to be released at journal submission)
+## v2.5 (journal submission, 2026-11-06)
 - `PQAnchor5.sol`: Merkle hashing in place (no memory growth per hash), leaves copied with calldatacopy in the packed path, P-256 verified for real via the EIP-7951 precompile, no key load in no-verification modes.
 - `pq_gasbench7.mjs`: all main tables re-measured on PQAnchor5, with real P-256 and per-record cost at the largest batch; every transaction checked for skipped devices/records. Results in `onchain/results7/`.
 - `pq_gasbench8.mjs`: long-lived LMS configurations (H15, HSS H10/H10 for n = 32 and n = 24), registration and revocation incl. RA keys (ML-DSA-44 priced, HSS executed), ABI vs packed, corrected no-verification baseline, epoch test, model points with exact tokens and execution. Results in `onchain/results8/`.
