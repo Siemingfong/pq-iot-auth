@@ -1,0 +1,268 @@
+{
+  "pr": [
+    {
+      "scheme": "ECDSA",
+      "impl": "ecrecover",
+      "config": "individual",
+      "gas": 64675,
+      "per_record": 64675,
+      "fits_cap": true,
+      "zero_bytes": 457,
+      "nonzero_bytes": 187,
+      "exec": 38855
+    },
+    {
+      "scheme": "ECDSA",
+      "impl": "ecrecover",
+      "config": "n=50",
+      "gas": 648574,
+      "per_record": 12971,
+      "fits_cap": true,
+      "zero_bytes": 10552,
+      "nonzero_bytes": 8076,
+      "exec": 456150
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Precompile EIP-8355",
+      "config": "individual",
+      "gas": 177660,
+      "per_record": 177660,
+      "fits_cap": true,
+      "zero_bytes": 458,
+      "nonzero_bytes": 3802,
+      "exec": 43909
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Solidity, NIST (optimized)",
+      "config": "individual",
+      "gas": 1313896,
+      "per_record": 1313896,
+      "fits_cap": true,
+      "zero_bytes": 458,
+      "nonzero_bytes": 3802,
+      "exec": 1230232
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Solidity, EVM-friendly (optimized)",
+      "config": "individual",
+      "gas": 966405,
+      "per_record": 966405,
+      "fits_cap": true,
+      "zero_bytes": 458,
+      "nonzero_bytes": 3802,
+      "exec": 882741
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Precompile EIP-8355",
+      "config": "n=50",
+      "gas": 5624500,
+      "per_record": 112490,
+      "fits_cap": true,
+      "zero_bytes": 10854,
+      "nonzero_bytes": 137374,
+      "exec": 862983
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Solidity, NIST (optimized)",
+      "config": "n=50",
+      "gas": 62441533,
+      "per_record": 1248831,
+      "fits_cap": false,
+      "zero_bytes": 10854,
+      "nonzero_bytes": 137374,
+      "exec": 60179133
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Solidity, EVM-friendly (optimized)",
+      "config": "n=50",
+      "gas": 45066983,
+      "per_record": 901340,
+      "fits_cap": false,
+      "zero_bytes": 10854,
+      "nonzero_bytes": 137374,
+      "exec": 42804583
+    },
+    {
+      "scheme": "ML-DSA-65",
+      "impl": "Precompile EIP-8355",
+      "config": "individual",
+      "gas": 238620,
+      "per_record": 238620,
+      "fits_cap": true,
+      "zero_bytes": 474,
+      "nonzero_bytes": 5322,
+      "exec": 47150
+    },
+    {
+      "scheme": "ML-DSA-65",
+      "impl": "Precompile EIP-8355",
+      "config": "n=50",
+      "gas": 7659390,
+      "per_record": 153188,
+      "fits_cap": true,
+      "zero_bytes": 11291,
+      "nonzero_bytes": 188137,
+      "exec": 1171391
+    },
+    {
+      "scheme": "Falcon-512",
+      "impl": "Precompile EIP-8052",
+      "config": "individual",
+      "gas": 91780,
+      "per_record": 91780,
+      "fits_cap": true,
+      "zero_bytes": 462,
+      "nonzero_bytes": 1654,
+      "exec": 39817
+    },
+    {
+      "scheme": "Falcon-512",
+      "impl": "Solidity, EVM-friendly",
+      "config": "individual",
+      "gas": 1633265,
+      "per_record": 1633265,
+      "fits_cap": true,
+      "zero_bytes": 462,
+      "nonzero_bytes": 1654,
+      "exec": 1583953
+    },
+    {
+      "scheme": "Falcon-512",
+      "impl": "Precompile EIP-8052",
+      "config": "n=50",
+      "gas": 1975650,
+      "per_record": 39513,
+      "fits_cap": true,
+      "zero_bytes": 10029,
+      "nonzero_bytes": 46359,
+      "exec": 545708
+    },
+    {
+      "scheme": "Falcon-512",
+      "impl": "Solidity, EVM-friendly",
+      "config": "n=50",
+      "gas": 78555368,
+      "per_record": 1571107,
+      "fits_cap": false,
+      "zero_bytes": 10029,
+      "nonzero_bytes": 46359,
+      "exec": 77752508
+    },
+    {
+      "scheme": "SLH-DSA-128s",
+      "impl": "none (data cost only)",
+      "config": "individual",
+      "gas": 344060,
+      "per_record": 344060,
+      "fits_cap": true,
+      "zero_bytes": 458,
+      "nonzero_bytes": 7962,
+      "exec": 37512
+    },
+    {
+      "scheme": "SLH-DSA-128s",
+      "impl": "none (data cost only)",
+      "config": "n=50",
+      "gas": 15979270,
+      "per_record": 319585,
+      "fits_cap": true,
+      "zero_bytes": 11295,
+      "nonzero_bytes": 396133,
+      "exec": 746801
+    },
+    {
+      "scheme": "LMS-H10-W4",
+      "impl": "Solidity LMS (real)",
+      "config": "individual",
+      "gas": 360215,
+      "per_record": 360215,
+      "fits_cap": true,
+      "zero_bytes": 467,
+      "nonzero_bytes": 2641,
+      "exec": 295091
+    },
+    {
+      "scheme": "LMS-H10-W4",
+      "impl": "Solidity LMS (real)",
+      "config": "n=50",
+      "gas": 16327763,
+      "per_record": 326555,
+      "fits_cap": true,
+      "zero_bytes": 10920,
+      "nonzero_bytes": 129628,
+      "exec": 14189035
+    },
+    {
+      "scheme": "ML-DSA-87",
+      "impl": "Precompile EIP-8355",
+      "config": "individual",
+      "gas": 317090,
+      "per_record": 317090,
+      "fits_cap": true,
+      "zero_bytes": 461,
+      "nonzero_bytes": 7287,
+      "exec": 52521
+    },
+    {
+      "scheme": "ML-DSA-87",
+      "impl": "Precompile EIP-8355",
+      "config": "n=50",
+      "gas": 10541640,
+      "per_record": 210833,
+      "fits_cap": true,
+      "zero_bytes": 11216,
+      "nonzero_bytes": 260212,
+      "exec": 1677858
+    },
+    {
+      "scheme": "SLH-DSA-128f",
+      "impl": "none (data cost only)",
+      "config": "individual",
+      "gas": 712250,
+      "per_record": 712250,
+      "fits_cap": true,
+      "zero_bytes": 473,
+      "nonzero_bytes": 17163,
+      "exec": 39714
+    },
+    {
+      "scheme": "SLH-DSA-128f",
+      "impl": "-",
+      "config": "n=50",
+      "gas": null,
+      "per_record": null,
+      "note": "invalid (floor above cap)"
+    }
+  ],
+  "pr_max": [
+    {
+      "scheme": "ECDSA",
+      "impl": "ecrecover",
+      "max_records_per_tx": 1430
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "impl": "Precompile EIP-8355",
+      "max_records_per_tx": 160
+    },
+    {
+      "scheme": "Falcon-512",
+      "impl": "Precompile EIP-8052",
+      "max_records_per_tx": 520
+    },
+    {
+      "scheme": "LMS-H10-W4",
+      "impl": "Solidity LMS (real)",
+      "max_records_per_tx": 50
+    }
+  ],
+  "lms_verify": [],
+  "lms_regression": {},
+  "dr0_lms": []
+}

@@ -50,7 +50,9 @@ jobs:
           SEPOLIA_PRIVATE_KEY: ${{ secrets.SEPOLIA_PRIVATE_KEY }}
           SCHEMES: ${{ inputs.schemes }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
-        run: node sepolia_measure.mjs 2>&1 | tee results-sepolia-console.txt
+        run: |
+          set -o pipefail
+          node sepolia_measure.mjs 2>&1 | tee results-sepolia-console.txt
 
       - name: Upload results
         if: always()

@@ -1,0 +1,13 @@
+scheme,impl,gas,calldata_bytes
+ECDSA,ecrecover (real),54930,516
+ML-DSA-44,"Solidity, NIST (ZKNOX main)",8239375,4132
+ML-DSA-44,"Solidity, NIST (ZKNOX optimized)",1303944,4132
+ML-DSA-44,"Solidity, EVM-friendly (ZKNOX optimized)",956453,4132
+ML-DSA-44,Precompile EIP-8355,176530,4132
+ML-DSA-65,Precompile EIP-8355,237100,5668
+ML-DSA-87,Precompile EIP-8355,315750,7620
+Falcon-512,"Solidity, NIST (ZKNOX)",4894772,1988
+Falcon-512,"Solidity, EVM-friendly (ZKNOX)",1623265,1988
+Falcon-512,Precompile EIP-8052,90290,1988
+SLH-DSA-128s,no verifier (data cost only),342360,8292
+SLH-DSA-128f,no verifier (data cost only),710760,17508

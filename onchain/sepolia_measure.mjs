@@ -26,6 +26,11 @@ const kec = (h) => hex(keccak_256(hexToBytes(h)))
 const log = (...a) => console.log(...a)
 const STUB = '0x000000000000000000000000000000000000ab12'   // never called: ECDSA and P-256 use ecrecover / 0x100
 
+// ------------------------------------------------------------------ required files (checked before touching the network)
+for (const f of ['PQAnchor5.sol', 'LMSVerifier2.sol', 'lms_signer.py']) {
+  if (!fs.existsSync(f)) { console.error(`Missing ${f} in ${process.cwd()}: commit the onchain/ folder in full (git add onchain/${f}).`); process.exit(1) }
+}
+
 // ------------------------------------------------------------------ network and safety checks
 const RPC = process.env.SEPOLIA_RPC_URL, KEY = process.env.SEPOLIA_PRIVATE_KEY
 if (!RPC || !KEY) { console.error('Set SEPOLIA_RPC_URL and SEPOLIA_PRIVATE_KEY'); process.exit(1) }

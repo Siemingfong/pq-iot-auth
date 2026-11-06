@@ -1,0 +1,43 @@
+{
+  "pr_hss": [
+    {
+      "config": "individual",
+      "records": 1,
+      "tx_gas": 717263,
+      "per_record": 717263,
+      "fits_cap": true
+    },
+    {
+      "config": "n=10",
+      "records": 10,
+      "tx_gas": 6733411,
+      "per_record": 673341,
+      "fits_cap": true
+    },
+    {
+      "config": "n=20",
+      "records": 20,
+      "tx_gas": 13367235,
+      "per_record": 668362,
+      "fits_cap": true
+    },
+    {
+      "config": "n=30",
+      "ok": false,
+      "per_record": null,
+      "tx_gas": 16777216
+    }
+  ],
+  "dr_m24h15": [
+    {
+      "design": "DR-0",
+      "per_device": 309460,
+      "per_record_k100": 3095
+    },
+    {
+      "design": "DR-0C",
+      "per_device": 311410,
+      "per_record_k100": 3114
+    }
+  ]
+}

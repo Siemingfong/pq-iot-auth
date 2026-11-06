@@ -1,0 +1,55 @@
+deployed PQAnchor, gas 692518
+individual done
+PR ML-DSA-44 n=200 stub run failed (cap)
+PR ML-DSA-65 n=200 stub run failed (cap)
+PR ML-DSA-87 n=100 stub run failed (cap)
+PR ML-DSA-87 n=200 stub run failed (cap)
+PR SLH-DSA-128s n=100 stub run failed (cap)
+PR SLH-DSA-128s n=200 stub run failed (cap)
+PR SLH-DSA-128f n=50 stub run failed (cap)
+PR SLH-DSA-128f n=100 stub run failed (cap)
+PR SLH-DSA-128f n=200 stub run failed (cap)
+per-record done
+DR ECDSA k=1 done
+DR ECDSA k=10 done
+DR ECDSA k=100 done
+DR ECDSA k=1000 done
+DR ML-DSA-44 k=1 done
+DR ML-DSA-44 k=10 done
+DR ML-DSA-44 k=100 done
+DR ML-DSA-44 k=1000 done
+DR ML-DSA-65 k=1 done
+DR ML-DSA-65 k=10 done
+DR ML-DSA-65 k=100 done
+DR ML-DSA-65 k=1000 done
+DR ML-DSA-87 k=1 done
+DR ML-DSA-87 k=10 done
+DR ML-DSA-87 k=100 done
+DR ML-DSA-87 k=1000 stub failed
+DR Falcon-512 k=1 done
+DR Falcon-512 k=10 done
+DR Falcon-512 k=100 done
+DR Falcon-512 k=1000 done
+DR SLH-DSA-128s k=1 done
+DR SLH-DSA-128s k=10 done
+DR SLH-DSA-128s k=100 done
+DR SLH-DSA-128s k=1000 stub failed
+DR SLH-DSA-128f k=1 done
+DR SLH-DSA-128f k=10 done
+DR SLH-DSA-128f k=100 done
+DR SLH-DSA-128f k=1000 stub failed
+max ECDSA | ecrecover (real): PR 1816 records, DR(k=100) 102 devices
+max ML-DSA-44 | Solidity, NIST (ZKNOX main): PR 2 records, DR(k=100) 2 devices
+max ML-DSA-44 | Solidity, NIST (ZKNOX optimized): PR 13 records, DR(k=100) 12 devices
+max ML-DSA-44 | Solidity, EVM-friendly (ZKNOX optimized): PR 18 records, DR(k=100) 16 devices
+max ML-DSA-44 | Precompile EIP-8355: PR 159 records, DR(k=100) 60 devices
+max ML-DSA-65 | Precompile EIP-8355: PR 116 records, DR(k=100) 49 devices
+max ML-DSA-87 | Precompile EIP-8355: PR 82 records, DR(k=100) 40 devices
+max Falcon-512 | Solidity, NIST (ZKNOX): PR 3 records, DR(k=100) 3 devices
+max Falcon-512 | Solidity, EVM-friendly (ZKNOX): PR 10 records, DR(k=100) 9 devices
+max Falcon-512 | Precompile EIP-8052: PR 515 records, DR(k=100) 86 devices
+max SLH-DSA-128s | no verifier (data cost only): PR 52 records, DR(k=100) 37 devices
+max SLH-DSA-128f | no verifier (data cost only): PR 24 records, DR(k=100) 20 devices
+formula check: {"predicted_vs_vm_max_abs_diff":0,"runs":189}
+written to results
+EXIT 0
