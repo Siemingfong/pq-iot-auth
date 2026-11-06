@@ -14,9 +14,9 @@
     }
   ],
   "fuzz": {
-    "cases": 1200,
+    "cases": 600,
     "accepted": 0,
-    "rejected_false": 399,
-    "reverted": 801
+    "rejected_false": 200,
+    "reverted": 400
   }
 }

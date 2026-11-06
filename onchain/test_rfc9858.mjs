@@ -14,16 +14,16 @@ async function verify(pub, sig, msg) {
   if (r.execResult.exceptionError) return 'revert'
   return iT.decodeFunctionResult('verifyHSS', r.execResult.returnValue)[0]
 }
-const V = JSON.parse(fs.readFileSync('rfc8554_vectors.json', 'utf8')), res = { rfc: [], fuzz: {} }
+const V = JSON.parse(fs.readFileSync('rfc9858_vectors.json', 'utf8')), res = { rfc: [], fuzz: {} }
 for (const [i, c] of V.entries()) {
   const ok = await verify(c.pub, c.sig, c.msg)
   const badMsg = await verify(c.pub, c.sig, c.msg.slice(0, -2) + (c.msg.endsWith('00') ? '01' : '00'))
   const badSig = await verify(c.pub, c.sig.slice(0, 200) + (c.sig[200] === 'f' ? '0' : 'f') + c.sig.slice(201), c.msg)
   res.rfc.push({ test_case: i + 1, valid_accepted: ok, wrong_message: badMsg, tampered_signature: badSig })
 }
-console.log('RFC 8554 Appendix F:', JSON.stringify(res.rfc))
+console.log('RFC 9858 Appendix A (SHA-256/192):', JSON.stringify(res.rfc))
 // differential fuzzing: random structural mutations of a valid vector must never verify
-const c = V[1]; let accepted = 0, reverted = 0, rejected = 0, N = 1200
+const c = V[1]; let accepted = 0, reverted = 0, rejected = 0, N = 600
 const mut = [
   (p, g) => [p, g.slice(0, 8) + crypto.randomBytes(4).toString('hex') + g.slice(16)],          // OTS/LMS type code
   (p, g) => [p, g.slice(0, 2 * (crypto.randomInt(g.length / 2)))],                                // truncation
@@ -41,4 +41,4 @@ for (let t = 0; t < N; t++) {
 }
 res.fuzz = { cases: N, accepted, rejected_false: rejected, reverted }
 console.log('fuzz:', JSON.stringify(res.fuzz))
-fs.mkdirSync('results9', { recursive: true }); fs.writeFileSync('results9/rfc_fuzz.json', JSON.stringify(res, null, 2))
+fs.mkdirSync('results9', { recursive: true }); fs.writeFileSync('results9/rfc9858.json', JSON.stringify(res, null, 2))

@@ -19,7 +19,8 @@ import { createFeeMarket1559Tx } from '@ethereumjs/tx'
 import { createBlock } from '@ethereumjs/block'
 import { Account, Address, hexToBytes, privateToAddress } from '@ethereumjs/util'
 
-const OUT = 'results8'
+const FORK = process.argv.includes('--fork') ? process.argv[process.argv.indexOf('--fork') + 1] : 'osaka'
+const OUT = 'results10-' + FORK
 fs.mkdirSync(OUT, { recursive: true })
 const CAP = 16_777_216, CHAIN_ID = 1n, STUB = '0x000000000000000000000000000000000000ab12'
 const abi = AbiCoder.defaultAbiCoder()
@@ -54,7 +55,7 @@ const lmsLines = readline.createInterface({ input: lmsProc.stdout })
 const lmsQueue = []
 lmsLines.on('line', (l) => lmsQueue.shift()(JSON.parse(l)))
 const lmsCall = (req) => new Promise((res) => { lmsQueue.push(res); lmsProc.stdin.write(JSON.stringify(req) + '\n') })
-const LMS = ['LMS-H10-W2', 'LMS-H10-W4', 'LMS-H10-W8', 'LMS-H15-W4', 'LMS-HSS-H10W4x2', 'LMS-M24-H10-W4', 'LMS-HSS-M24-H10W4x2']
+const LMS = ['LMS-H10-W2', 'LMS-H10-W4', 'LMS-H10-W8', 'LMS-H15-W4', 'LMS-HSS-H10W4x2', 'LMS-M24-H10-W4', 'LMS-HSS-M24-H10W4x2', 'LMS-M24-H15-W4']
 const lmsKey = (s) => s.slice(4)
 const lmsW = (s) => s.split('-')[2]
 
@@ -67,8 +68,19 @@ if (errs.length) { console.error(errs.map(e => e.formattedMessage).join('\n')); 
 const C = { anchor: out.contracts['PQAnchor5.sol'].PQAnchor5, lms: out.contracts['LMSVerifier2.sol'].LMSVerifier2, meter: out.contracts['LMSVerifier2.sol'].Meter }
 const iA = new Interface(C.anchor.abi), iM = new Interface(C.meter.abi)
 
-const common = new Common({ chain: Mainnet, hardfork: Hardfork.Osaka })
-const vm = await createVM({ common })
+const common = new Common({ chain: Mainnet, hardfork: FORK === 'amsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka })
+
+// ---- draft precompiles as real precompiles: charge the proposed price, return 1 (32 bytes)
+const PRICE_BY_LEN = new Map()
+function setPrice(pkLen, sigLens, gas) { for (const sl of sigLens) PRICE_BY_LEN.set(pkLen + sl + 32, gas) }
+const PRECOMPILE = async (opts) => {
+  const g = PRICE_BY_LEN.get(opts.data.length)
+  if (g === undefined) throw new Error('unknown verifier input length ' + opts.data.length)
+  if (opts.gasLimit < BigInt(g)) return { executionGasUsed: opts.gasLimit, returnValue: new Uint8Array(0), exceptionError: { error: 'out of gas' } }
+  const rv = new Uint8Array(32); rv[31] = 1
+  return { executionGasUsed: BigInt(g), returnValue: rv }
+}
+const vm = await createVM({ common, evmOpts: { customPrecompiles: [{ address: new Address(hexToBytes('0x000000000000000000000000000000000000ab12')), function: PRECOMPILE }] } })
 const pkey = hexToBytes('0x' + '55'.repeat(32)), sender = new Address(privateToAddress(pkey))
 await vm.stateManager.putAccount(sender, new Account(0n, 10n ** 30n))
 const block = createBlock({ header: { number: 23_000_000n, gasLimit: 60_000_000n, baseFeePerGas: 1n, timestamp: 1_780_000_000n } }, { common })
@@ -146,7 +158,7 @@ async function run(anchor, scheme, ds, k, opt) {
 }
 function price(r, scheme, nVerify, vGas) {
   const t = tokens(r.data)
-  if (scheme === 'ECDSA' || scheme === 'P-256' || LMS.includes(scheme)) return { total: r.total, exec: r.exec, z: t.z, nz: t.nz }
+  return { total: r.total, exec: r.exec, z: t.z, nz: t.nz }
   const exec = r.exec - (2600 + 100 * (nVerify - 1)) + nVerify * vGas
   return { total: txGas(exec, r.data), exec, z: t.z, nz: t.nz }
 }
@@ -155,7 +167,7 @@ const impls = (s) => (s === 'ECDSA' ? { 'ecrecover': 0 } : s === 'P-256' ? { 'EI
 
 
 V['ML-DSA-87'] = { 'Precompile EIP-8355': 13606 }; PK['ML-DSA-87'] = S['ML-DSA-87'].pk; SIGS['ML-DSA-87'] = S['ML-DSA-87'].sigs
-const anchorOf = (s, strict = false) => (s === 'LMS-M24-H10-W4' || s === 'LMS-HSS-M24-H10W4x2') ? lms3A : (LMS.includes(s) ? (strict ? lmsS : lmsA) : (strict ? stubS : stubA))
+const anchorOf = (s, strict = false) => (s === 'LMS-M24-H10-W4' || s === 'LMS-HSS-M24-H10W4x2' || s === 'LMS-M24-H15-W4') ? lms3A : (LMS.includes(s) ? (strict ? lmsS : lmsA) : (strict ? stubS : stubA))
 const R5 = { encoding: [], epoch: {}, noverify: [], model: [], lms_stats: [], grind: [] }
 const M = 10
 const hexs = (x) => x.startsWith('0x') ? x.slice(2) : x
@@ -231,108 +243,65 @@ function rec(design, enc, s, impl, r, nRec, nVer, g) {
     glamsterdam_per_record: Math.round(glam({ data: r.data, execP: p.exec }) / nRec) }
   R5.encoding.push(row); return row
 }
-// ================================================================= A. ABI vs packed encoding
-for (const s of ['ECDSA', 'P-256', 'ML-DSA-44', 'ML-DSA-65', 'ML-DSA-87', 'Falcon-512', 'LMS-H10-W4', 'LMS-HSS-H10W4x2', 'LMS-HSS-M24-H10W4x2']) {
-  const A = anchorOf(s)
-  const dsC = await register(A, s + '|enc|cd', s, M, 'calldata')
-  const dsK = LMS.includes(s) ? null : await register(A, s + '|enc|code', s, M, 'code')
-  await run(A, s, dsC, 1, { leaves: false, keyOnChain: false }); if (dsK) await run(A, s, dsK, 1, { leaves: false, keyOnChain: true })
-  await abiPR(A, s, dsC, 1); await packedPR(A, s, dsC, 1)               // warm the sequence slots
-  for (const [impl, g] of Object.entries(impls(s))) {
-    if (impl.startsWith('Solidity') && !LMS.includes(s)) continue
-    const go = async (design, enc, fn, nRec, nVer) => { const r = await fn(); if (!r.ok) { log('FAILED', design, enc, s, r.err); return } const x = rec(design, enc, s, impl, r, nRec, nVer, g); log(design, enc, s, impl, x.per_record, x.bytes_per_record, x.zero_fraction) }
-    await go('PR n=50', 'ABI', () => abiPR(A, s, dsC, 5), 50, 50)
-    await go('PR n=50', 'packed', () => packedPR(A, s, dsC, 5), 50, 50)
-    await go('DR-L k=100', 'ABI', () => run(A, s, dsC, 100, { leaves: true, keyOnChain: false }), 1000, M)
-    await go('DR-L k=100', 'packed', () => packedDR(A, s, dsC, 100, { leaves: true, keyOnChain: false }), 1000, M)
-    await go('DR-0 k=100', 'ABI', () => run(A, s, dsC, 100, { leaves: false, keyOnChain: false }), 1000, M)
-    await go('DR-0 k=100', 'packed', () => packedDR(A, s, dsC, 100, { leaves: false, keyOnChain: false }), 1000, M)
-    if (dsK) {
-      await go('DR-0C k=100', 'ABI', () => run(A, s, dsK, 100, { leaves: false, keyOnChain: true }), 1000, M)
-      await go('DR-0C k=100', 'packed', () => packedDR(A, s, dsK, 100, { leaves: false, keyOnChain: true }), 1000, M)
-    }
-  }
-}
 
-// ================================================================= recommended long-lived LMS configurations
-for (const s of ['LMS-H15-W4', 'LMS-HSS-H10W4x2', 'LMS-HSS-M24-H10W4x2']) {
+// prices (EIP-8355: 6,500/9,000/13,500 + 6 per message word; EIP-8052: 3,000; EIP-8051: 4,500; hybrids add ecrecover 3,000 + a 100-gas call)
+const L = (s) => Buffer.from(PK[s], 'hex').length, SL = (s) => [...new Set(SIGS[s].map(x => x.length / 2))]
+setPrice(L('ML-DSA-44'), SL('ML-DSA-44'), 6506); setPrice(L('ML-DSA-65'), SL('ML-DSA-65'), 9006); setPrice(L('ML-DSA-87'), SL('ML-DSA-87'), 13506)
+setPrice(L('Falcon-512'), SL('Falcon-512'), 3000); setPrice(L('SLH-DSA-128s'), SL('SLH-DSA-128s'), 0)
+setPrice(L('ML-DSA-44 (EIP-8051 key)'), SL('ML-DSA-44'), 4500)
+setPrice(L('Hybrid ML-DSA-44 + ECDSA'), SL('Hybrid ML-DSA-44 + ECDSA'), 6506 + 3100); setPrice(L('Hybrid Falcon-512 + ECDSA'), SL('Hybrid Falcon-512 + ECDSA'), 3000 + 3100)
+const OUTR = { fork: FORK, dr: [], pr: [], packed: [], registration: [], pr_max: [] }
+const save = () => { fs.mkdirSync(OUT, { recursive: true }); fs.writeFileSync(`${OUT}/${ONLY ? ONLY.join('-') : 'pq10_results'}.json`, JSON.stringify(OUTR, null, 2)) }
+const ONLY = process.argv.includes('--only') ? process.argv[process.argv.indexOf('--only') + 1].split(',') : null
+const want = (sec) => !ONLY || ONLY.includes(sec)
+const chk = (r, what) => { if (!r.ok) throw new Error(what + ' failed: ' + (r.err || 'invalid')); if (rejected(r)) throw new Error(what + ' rejected') }
+// ---- root-only and leaf-posting designs (ABI)
+const DR0 = ['ECDSA', 'P-256', 'ML-DSA-44', 'ML-DSA-65', 'ML-DSA-87', 'Falcon-512', 'Hybrid ML-DSA-44 + ECDSA', 'LMS-H10-W4', 'LMS-H15-W4', 'LMS-HSS-H10W4x2', 'LMS-M24-H15-W4', 'LMS-HSS-M24-H10W4x2', 'ML-DSA-44 (EIP-8051 key)']
+if (want('dr')) for (const s of (ONLY && process.argv.includes('--dr-schemes') ? process.argv[process.argv.indexOf('--dr-schemes') + 1].split('|') : DR0)) {
   const A = anchorOf(s)
   for (const kc of [false, true]) {
-    const ds = await register(A, `${s}|lt|${kc}`, s, M, kc ? 'code' : 'calldata')
+    if (s === 'ML-DSA-44 (EIP-8051 key)' && !kc) continue
+    const ds = await register(A, `${s}|${kc}`, s, M, kc ? 'code' : 'calldata')
     await run(A, s, ds, 1, { leaves: false, keyOnChain: kc })
-    const r = await run(A, s, ds, 1, { leaves: false, keyOnChain: kc })
-    if (rejected(r)) throw new Error('rejected ' + s)
-    R5.encoding.push({ design: kc ? 'DR-0C k=100' : 'DR-0 k=100', encoding: 'ABI', scheme: s, impl: 'Solidity LMS (real)', ok: r.ok, records: 1000, tx_gas: r.total, per_record: Math.round(r.total / 1000), per_device: Math.round(r.total / M) })
-    log('long-lived', s, kc ? 'DR-0C' : 'DR-0', Math.round(r.total / 1000))
+    const r = await run(A, s, ds, 1, { leaves: false, keyOnChain: kc }); chk(r, s)
+    const t = tokens(r.data)
+    OUTR.dr.push({ design: kc ? 'DR-0C' : 'DR-0', scheme: s, k: 100, per_record: Math.round(r.total / (M * 100)), per_device: Math.round(r.total / M), exec: r.exec, tokens: t.tok, bytes: t.z + t.nz })
   }
+  log('DR0', s); save()
 }
-// ================================================================= registration and revocation
-const REG = []
-{
-  const kh = (x) => kec(x)
-  for (const [s, key] of [['ML-DSA-44', PK['ML-DSA-44']], ['ML-DSA-65', PK['ML-DSA-65']], ['Falcon-512', PK['Falcon-512']], ['ML-DSA-44 (EIP-8051 key)', PK['ML-DSA-44 (EIP-8051 key)']]]) {
-    for (const fn of ['registerDevice', 'registerDeviceCode']) { const r = await send(stubA, hexToBytes(iA.encodeFunctionData(fn, [nextIdx++, '0x' + key]))); REG.push({ scheme: s, op: fn, gas: r.total, ok: r.ok }) }
-  }
-  // PQ-authorized registration and revocation, RA key = ML-DSA-44 (priced) on the stub anchor
-  await send(stubA, hexToBytes(iA.encodeFunctionData('setRaPqKey', ['0x' + PK['ML-DSA-44']])))
-  const idx = nextIdx++
-  const r1 = await send(stubA, hexToBytes(iA.encodeFunctionData('registerDevicePQ', [idx, '0x' + PK['ML-DSA-44'], pqSig('ML-DSA-44')])))
-  const r2 = await send(stubA, hexToBytes(iA.encodeFunctionData('revokeDevicePQ', [idx, pqSig('ML-DSA-44')])))
-  for (const [impl, g] of Object.entries(V['ML-DSA-44'])) { REG.push({ scheme: 'RA ML-DSA-44', op: 'registerDevicePQ ' + impl, gas: price(r1, 'x', 1, g).total, ok: r1.ok }); REG.push({ scheme: 'RA ML-DSA-44', op: 'revokeDevicePQ ' + impl, gas: price(r2, 'x', 1, g).total, ok: r2.ok }) }
-  // RA key = two-level HSS (n = 32), verified for real
-  const raPk = '0x' + (await lmsCall({ key: 'HSS-H10W4x2', pk: true })).pk
-  await send(lmsA, hexToBytes(iA.encodeFunctionData('setRaPqKey', [raPk])))
-  const dpk = '0x' + (await lmsCall({ key: 'H10-W4', pk: true })).pk
-  for (const fn of ['registerDevice', 'registerDeviceCode']) { const r = await send(lmsA, hexToBytes(iA.encodeFunctionData(fn, [nextIdx++, dpk]))); REG.push({ scheme: 'LMS-H10-W4', op: fn, gas: r.total, ok: r.ok }) }
-  const j = nextIdx++
-  const mReg = kec(abi.encode(['uint256', 'address', 'string', 'uint32', 'bytes32', 'uint64'], [CHAIN_ID, lmsA.toString(), 'register', j, kh(dpk), 0]))
-  const r3 = await send(lmsA, hexToBytes(iA.encodeFunctionData('registerDevicePQ', [j, dpk, '0x' + (await lmsCall({ key: 'HSS-H10W4x2', msg: mReg.slice(2) })).sig])))
-  const mRev = kec(abi.encode(['uint256', 'address', 'string', 'uint32', 'bytes32', 'uint64'], [CHAIN_ID, lmsA.toString(), 'revoke', j, kh(dpk), 1]))
-  const r4 = await send(lmsA, hexToBytes(iA.encodeFunctionData('revokeDevicePQ', [j, '0x' + (await lmsCall({ key: 'HSS-H10W4x2', msg: mRev.slice(2) })).sig])))
-  REG.push({ scheme: 'RA HSS (H10-W4)^2', op: 'registerDevicePQ (real)', gas: r3.total, ok: r3.ok }, { scheme: 'RA HSS (H10-W4)^2', op: 'revokeDevicePQ (real)', gas: r4.total, ok: r4.ok })
-  log('registration', JSON.stringify(REG))
+if (want('drl')) for (const s of ['ECDSA', 'ML-DSA-44', 'LMS-H10-W4']) {
+  const A = anchorOf(s), ds = await register(A, `${s}|L`, s, M, 'calldata')
+  await run(A, s, ds, 1, { leaves: false, keyOnChain: false })
+  const r = await run(A, s, ds, 100, { leaves: true, keyOnChain: false }); chk(r, s + ' DR-L')
+  save(); OUTR.dr.push({ design: 'DR-L', scheme: s, k: 100, per_record: Math.round(r.total / (M * 100)), exec: r.exec, tokens: tokens(r.data).tok })
 }
-// ================================================================= epoch rule and reordering
-const EP = {}
-{
-  for (const [name, A] of [['strict', stubS], ['window', stubA]]) {
-    const ds = await register(A, 'ECDSA|ep|' + name, 'ECDSA', M, 'calldata')
-    await packedDR(A, 'ECDSA', ds, 1, { leaves: false, keyOnChain: false })
-    const r = await packedDR(A, 'ECDSA', ds, 1, { leaves: false, keyOnChain: false }); if (rejected(r)) throw new Error('ep')
-    EP[name + '_per_device'] = Math.round(r.total / M)
-    const d = (await register(A, 'ECDSA|ro|' + name, 'ECDSA', 1, 'calldata'))[0]
-    await packedDR(A, 'ECDSA', [d], 1, { leaves: false, keyOnChain: false })
-    const e1 = ep(A, d.idx)
-    epoch.set(A + ':' + d.idx, e1 + 1); await packedDR(A, 'ECDSA', [d], 1, { leaves: false, keyOnChain: false })
-    epoch.set(A + ':' + d.idx, e1); const late = await packedDR(A, 'ECDSA', [d], 1, { leaves: false, keyOnChain: false })
-    EP[name + '_late_root_accepted'] = rejected(late) === 0
-  }
-  log('epoch', JSON.stringify(EP))
+// ---- per-record signatures (ABI and packed) and packed root-only
+if (want('pr') || want('prmax')) for (const s of (want('pr') ? ['ECDSA', 'P-256', 'ML-DSA-44', 'Falcon-512', 'LMS-H10-W4'] : ['ECDSA', 'P-256'])) {
+  const A = anchorOf(s), ds = await register(A, `${s}|pr`, s, M, 'calldata')
+  await abiPR(A, s, ds, 1)
+  const r = await abiPR(A, s, ds, 5); chk(r, s + ' PR')
+  const rp = await packedPR(A, s, ds, 5); chk(rp, s + ' PR packed')
+  OUTR.pr.push({ scheme: s, n: 50, abi: Math.round(r.total / 50), packed: Math.round(rp.total / 50) })
+  log('PR', s, Math.round(r.total / 50), Math.round(rp.total / 50)); save()
 }
-// ================================================================= anchoring without verification (packed, key not loaded)
-const NV = []
-for (const [label, mode] of [['no verification, ML-DSA-44 signature posted', 1], ['no verification, only H(sig) posted', 2]]) {
-  const ds = await register(stubA, 'ML-DSA-44|nv' + mode, 'ML-DSA-44', M, 'code')
-  await packedDR(stubA, 'ML-DSA-44', ds, 1, { leaves: false, keyOnChain: true, mode })
-  const r = await packedDR(stubA, 'ML-DSA-44', ds, 1, { leaves: false, keyOnChain: true, mode }); if (rejected(r)) throw new Error('nv')
-  const t = tokens(r.data)
-  NV.push({ label, per_device: Math.round(r.total / M), per_record_k100: Math.round(r.total / (M * 100)), exec: r.exec, bytes: t.z + t.nz, glamsterdam_k100: Math.round(glam({ data: r.data, execP: r.exec }) / (M * 100)) })
+if (want('packed')) for (const [s, kc] of [['ECDSA', false], ['ML-DSA-44', true], ['ML-DSA-87', true], ['LMS-H10-W4', false]]) {
+  const A = anchorOf(s), ds = await register(A, `${s}|pk${kc}`, s, M, kc ? 'code' : 'calldata')
+  await packedDR(A, s, ds, 1, { leaves: false, keyOnChain: kc })
+  const r = await packedDR(A, s, ds, 1, { leaves: false, keyOnChain: kc }); chk(r, s + ' packed DR')
+  OUTR.packed.push({ design: kc ? 'DR-0C' : 'DR-0', scheme: s, per_record_k100: Math.round(r.total / (M * 100)) })
 }
-log('noverify', JSON.stringify(NV))
-// ================================================================= model points with exact tokens and execution (DR-L, ABI)
-const MP = []
-for (const [s, impl] of [['ECDSA', 'ecrecover'], ['ML-DSA-44', 'Precompile EIP-8355'], ['LMS-H10-W4', 'Solidity LMS (real)']]) {
-  const g = impls(s)[impl], A = anchorOf(s)
-  for (const [m, k] of [[10, 10], [10, 100], [10, 200], [4, 500], [4, 1000], [2, 2000]]) {
-    const ds = await register(A, `${s}|mp|${m}`, s, m, 'calldata')
-    if (ep(A, ds[0].idx) === 0) await run(A, s, ds, 1, { leaves: false, keyOnChain: false })
-    const r = await run(A, s, ds, k, { leaves: true, keyOnChain: false }); if (!r.ok || rejected(r)) throw new Error('model ' + s)
-    const p = price(r, s, m, g), t = tokens(r.data)
-    MP.push({ scheme: s, m, k, n: m * k, tx_gas: p.total, exec: p.exec, tokens: t.tok, per_record: Math.round(p.total / (m * k)) })
-  }
-  log('model', s)
+// ---- registration
+if (want('reg')) for (const [s, key] of [['ML-DSA-44', PK['ML-DSA-44']], ['ML-DSA-44 (EIP-8051 key)', PK['ML-DSA-44 (EIP-8051 key)']], ['Falcon-512', PK['Falcon-512']]]) {
+  for (const fn of ['registerDevice', 'registerDeviceCode']) { const r = await send(stubA, hexToBytes(iA.encodeFunctionData(fn, [nextIdx++, '0x' + key]))); OUTR.registration.push({ scheme: s, op: fn, gas: r.total, ok: r.ok }) }
 }
-fs.writeFileSync(`${OUT}/pq8_extras.json`, JSON.stringify({ encoding: R5.encoding, registration: REG, epoch: EP, noverify: NV, model: MP }, null, 2))
-
+// ---- largest per-record batch for P-256 and ECDSA (ceiling raised: up to 400 records per device)
+if (want('prmax')) for (const s of ['P-256', 'ECDSA']) {
+  const A = anchorOf(s), ds = dev[`${s}|pr`]
+  const fits = async (per) => { const r = await abiPR(A, s, ds, per); return r.ok && rejected(r) === 0 && r.total <= CAP ? r.total : 0 }
+  let lo = 1, hi = 400, best = 0, bestGas = 0
+  while (lo <= hi) { const mid = (lo + hi) >> 1; const g = await fits(mid); if (g) { best = mid; bestGas = g; lo = mid + 1 } else hi = mid - 1 }
+  OUTR.pr_max.push({ scheme: s, max_records: best * M, per_record_at_max: Math.round(bestGas / (best * M)) })
+  log('PR max', s, best * M, Math.round(bestGas / (best * M))); save()
+}
 lmsProc.stdin.end()
-log('written'); process.exit(0)
+save(); log('written', OUT); process.exit(0)

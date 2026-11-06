@@ -1,0 +1,249 @@
+{
+  "fork": "amsterdam",
+  "dr": [
+    {
+      "design": "DR-0",
+      "scheme": "ECDSA",
+      "k": 100,
+      "per_record": 408,
+      "per_device": 40751,
+      "exec": 357616,
+      "tokens": 8723,
+      "bytes": 4868
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ECDSA",
+      "k": 100,
+      "per_record": 452,
+      "per_device": 45235,
+      "exec": 406334,
+      "tokens": 7755,
+      "bytes": 4548
+    },
+    {
+      "design": "DR-0",
+      "scheme": "P-256",
+      "k": 100,
+      "per_record": 456,
+      "per_device": 45560,
+      "exec": 400522,
+      "tokens": 10019,
+      "bytes": 4868
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "P-256",
+      "k": 100,
+      "per_record": 494,
+      "per_device": 49379,
+      "exec": 449132,
+      "tokens": 7414,
+      "bytes": 4228
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ML-DSA-44",
+      "k": 100,
+      "per_record": 2641,
+      "per_device": 264079,
+      "exec": 418534,
+      "tokens": 153345,
+      "bytes": 41028
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-44",
+      "k": 100,
+      "per_record": 1801,
+      "per_device": 180111,
+      "exec": 460434,
+      "tokens": 101036,
+      "bytes": 27908
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ML-DSA-65",
+      "k": 100,
+      "per_record": 3624,
+      "per_device": 362383,
+      "exec": 459017,
+      "tokens": 214629,
+      "bytes": 56388
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-65",
+      "k": 100,
+      "per_record": 2375,
+      "per_device": 237455,
+      "exec": 495689,
+      "tokens": 136459,
+      "bytes": 36868
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ML-DSA-87",
+      "k": 100,
+      "per_record": 4873,
+      "per_device": 487311,
+      "exec": 525338,
+      "tokens": 292781,
+      "bytes": 75908
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-87",
+      "k": 100,
+      "per_record": 3214,
+      "per_device": 321423,
+      "exec": 555148,
+      "tokens": 189020,
+      "bytes": 49988
+    },
+    {
+      "design": "DR-0",
+      "scheme": "Falcon-512",
+      "k": 100,
+      "per_record": 1269,
+      "per_device": 126863,
+      "exec": 371086,
+      "tokens": 67432,
+      "bytes": 19588
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "Falcon-512",
+      "k": 100,
+      "per_record": 675,
+      "per_device": 67471,
+      "exec": 415997,
+      "tokens": 31221,
+      "bytes": 10308
+    },
+    {
+      "design": "DR-0",
+      "scheme": "Hybrid ML-DSA-44 + ECDSA",
+      "k": 100,
+      "per_record": 2702,
+      "per_device": 270223,
+      "exec": 450324,
+      "tokens": 156849,
+      "bytes": 41988
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "Hybrid ML-DSA-44 + ECDSA",
+      "k": 100,
+      "per_record": 1842,
+      "per_device": 184207,
+      "exec": 491982,
+      "tokens": 103632,
+      "bytes": 28548
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H10-W4",
+      "k": 100,
+      "per_record": 3527,
+      "per_device": 352657,
+      "exec": 3083744,
+      "tokens": 106956,
+      "bytes": 29508
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "LMS-H10-W4",
+      "k": 100,
+      "per_record": 3514,
+      "per_device": 351414,
+      "exec": 3080249,
+      "tokens": 104723,
+      "bytes": 28868
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H15-W4",
+      "k": 100,
+      "per_record": 3665,
+      "per_device": 366536,
+      "exec": 3196872,
+      "tokens": 113371,
+      "bytes": 31108
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "LMS-H15-W4",
+      "k": 100,
+      "per_record": 3710,
+      "per_device": 370978,
+      "exec": 3250071,
+      "tokens": 111177,
+      "bytes": 30468
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-HSS-H10W4x2",
+      "k": 100,
+      "per_record": 6927,
+      "per_device": 692693,
+      "exec": 6076261,
+      "tokens": 208918,
+      "bytes": 55108
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "LMS-HSS-H10W4x2",
+      "k": 100,
+      "per_record": 6985,
+      "per_device": 698537,
+      "exec": 6143715,
+      "tokens": 206664,
+      "bytes": 54468
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-M24-H15-W4",
+      "k": 100,
+      "per_record": 3254,
+      "per_device": 325394,
+      "exec": 2953711,
+      "tokens": 71308,
+      "bytes": 20548
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "LMS-M24-H15-W4",
+      "k": 100,
+      "per_record": 3310,
+      "per_device": 331003,
+      "exec": 3017458,
+      "tokens": 69393,
+      "bytes": 19908
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-HSS-M24-H10W4x2",
+      "k": 100,
+      "per_record": 5937,
+      "per_device": 593658,
+      "exec": 5409773,
+      "tokens": 127951,
+      "bytes": 34948
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "LMS-HSS-M24-H10W4x2",
+      "k": 100,
+      "per_record": 6026,
+      "per_device": 602578,
+      "exec": 5506815,
+      "tokens": 125991,
+      "bytes": 34308
+    }
+  ],
+  "pr": [],
+  "packed": [],
+  "registration": [],
+  "pr_max": []
+}

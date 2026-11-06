@@ -1,0 +1,128 @@
+{
+  "fork": "osaka",
+  "dr": [
+    {
+      "design": "DR-0",
+      "scheme": "ECDSA",
+      "k": 100,
+      "per_record": 254,
+      "per_device": 25361,
+      "exec": 197696,
+      "tokens": 8729,
+      "bytes": 4868
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ECDSA",
+      "k": 100,
+      "per_record": 292,
+      "per_device": 29249,
+      "exec": 240414,
+      "tokens": 7770,
+      "bytes": 4548
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ML-DSA-44",
+      "k": 100,
+      "per_record": 1554,
+      "per_device": 155430,
+      "exec": 258614,
+      "tokens": 153330,
+      "bytes": 41028
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-44",
+      "k": 100,
+      "per_record": 1031,
+      "per_device": 103127,
+      "exec": 294514,
+      "tokens": 101027,
+      "bytes": 27908
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ML-DSA-87",
+      "k": 100,
+      "per_record": 2949,
+      "per_device": 294884,
+      "exec": 365418,
+      "tokens": 292784,
+      "bytes": 75908
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-87",
+      "k": 100,
+      "per_record": 1911,
+      "per_device": 191117,
+      "exec": 389228,
+      "tokens": 189017,
+      "bytes": 49988
+    },
+    {
+      "design": "DR-0",
+      "scheme": "Falcon-512",
+      "k": 100,
+      "per_record": 695,
+      "per_device": 69529,
+      "exec": 211166,
+      "tokens": 67429,
+      "bytes": 19588
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "Falcon-512",
+      "k": 100,
+      "per_record": 396,
+      "per_device": 39596,
+      "exec": 250077,
+      "tokens": 31221,
+      "bytes": 10308
+    },
+    {
+      "design": "DR-0",
+      "scheme": "Hybrid ML-DSA-44 + ECDSA",
+      "k": 100,
+      "per_record": 1589,
+      "per_device": 158940,
+      "exec": 290404,
+      "tokens": 156840,
+      "bytes": 41988
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "Hybrid ML-DSA-44 + ECDSA",
+      "k": 100,
+      "per_record": 1057,
+      "per_device": 105729,
+      "exec": 326062,
+      "tokens": 103629,
+      "bytes": 28548
+    }
+  ],
+  "pr": [
+    {
+      "scheme": "ECDSA",
+      "n": 50,
+      "abi": 13409,
+      "packed": 12427
+    },
+    {
+      "scheme": "P-256",
+      "n": 50,
+      "abi": 17723,
+      "packed": 16857
+    }
+  ],
+  "packed": [],
+  "registration": [],
+  "pr_max": [
+    {
+      "scheme": "P-256",
+      "max_records": 1010,
+      "per_record_at_max": 16464
+    }
+  ]
+}

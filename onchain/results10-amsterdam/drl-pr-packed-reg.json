@@ -1,0 +1,122 @@
+{
+  "fork": "amsterdam",
+  "dr": [
+    {
+      "design": "DR-L",
+      "scheme": "ECDSA",
+      "k": 100,
+      "per_record": 2375,
+      "exec": 716345,
+      "tokens": 136399
+    },
+    {
+      "design": "DR-L",
+      "scheme": "ML-DSA-44",
+      "k": 100,
+      "per_record": 4689,
+      "exec": 785193,
+      "tokens": 281024
+    },
+    {
+      "design": "DR-L",
+      "scheme": "LMS-H10-W4",
+      "k": 100,
+      "per_record": 4404,
+      "exec": 3450631,
+      "tokens": 234680
+    }
+  ],
+  "pr": [
+    {
+      "scheme": "ECDSA",
+      "n": 50,
+      "abi": 24144,
+      "packed": 15504
+    },
+    {
+      "scheme": "P-256",
+      "n": 50,
+      "abi": 22505,
+      "packed": 19935
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "n": 50,
+      "abi": 190032,
+      "packed": 178203
+    },
+    {
+      "scheme": "Falcon-512",
+      "n": 50,
+      "abi": 72477,
+      "packed": 59919
+    },
+    {
+      "scheme": "LMS-H10-W4",
+      "n": 50,
+      "abi": 331501,
+      "packed": 329822
+    }
+  ],
+  "packed": [
+    {
+      "design": "DR-0",
+      "scheme": "ECDSA",
+      "per_record_k100": 392
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-44",
+      "per_record_k100": 1597
+    },
+    {
+      "design": "DR-0C",
+      "scheme": "ML-DSA-87",
+      "per_record_k100": 3009
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H10-W4",
+      "per_record_k100": 3507
+    }
+  ],
+  "registration": [
+    {
+      "scheme": "ML-DSA-44",
+      "op": "registerDevice",
+      "gas": 148194,
+      "ok": true
+    },
+    {
+      "scheme": "ML-DSA-44",
+      "op": "registerDeviceCode",
+      "gas": 2464169,
+      "ok": true
+    },
+    {
+      "scheme": "ML-DSA-44 (EIP-8051 key)",
+      "op": "registerDevice",
+      "gas": 1334168,
+      "ok": true
+    },
+    {
+      "scheme": "ML-DSA-44 (EIP-8051 key)",
+      "op": "registerDeviceCode",
+      "gas": 16244099,
+      "ok": false
+    },
+    {
+      "scheme": "Falcon-512",
+      "op": "registerDevice",
+      "gas": 141532,
+      "ok": true
+    },
+    {
+      "scheme": "Falcon-512",
+      "op": "registerDeviceCode",
+      "gas": 1822292,
+      "ok": true
+    }
+  ],
+  "pr_max": []
+}

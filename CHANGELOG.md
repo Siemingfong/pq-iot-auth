@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased (v2.7)
+- `pq_gasbench10.mjs`: draft precompiles (EIP-8355, EIP-8052, EIP-8051) registered as custom EVM precompiles that charge their proposed prices, so every transaction is executed end to end; runs under Osaka or Amsterdam (`--fork`). Under Osaka it reproduces the substituted figures within 0.02%. Results in `onchain/results10-osaka/` and `onchain/results10-amsterdam/` (Glamsterdam devnet-8 schedule as implemented in EthereumJS 10.1.3).
+- Fixed: the largest per-record P-256 batch was capped by the bisection's search range (600); the corrected value is 1,010 records.
+- `test_rfc9858.mjs`, `rfc9858_vectors.json`: the verifier passes the RFC 9858 Appendix A SHA-256/192 test vectors (n = 24); 600 mutated signatures, none accepted.
+
 ## v2.6 (journal submission, 2026-11-06)
 - `offchain/analysis_round7.py`: commit-now-verify-later costs, LoRaWAN record-size/burst/loss analysis, floor-price sweep, SLH-DSA estimate.
 - `RFCTest.sol`, `test_rfc.mjs`, `rfc8554_vectors.json`: the Solidity LMS/HSS verifier passes the RFC 8554 Appendix F test vectors; differential fuzzing with 1,200 structurally mutated signatures (none accepted).
