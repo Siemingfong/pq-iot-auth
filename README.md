@@ -1,10 +1,10 @@
 # pq-iot-auth
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23970176.svg)](https://doi.org/10.5281/zenodo.23970176)
+[![arXiv](https://img.shields.io/badge/arXiv-2611.08108-b31b1b.svg)](https://arxiv.org/abs/2611.08108) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23970176.svg)](https://doi.org/10.5281/zenodo.23970176)
 
 Archived releases: v2.3 [10.5281/zenodo.23970176](https://doi.org/10.5281/zenodo.23970176) (cited in the manuscript); v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084).
 
-Code and data for the article **"Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"** (M.-F. Sie, 2026, manuscript submitted).
+Code and data for the article ([arXiv:2611.08108](https://arxiv.org/abs/2611.08108)) **"Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"** (M.-F. Sie, 2026, manuscript submitted).
 
 The study measures what post-quantum (PQ) authentication of IoT records costs on Ethereum under the current execution rules (Osaka: EIP-7623 calldata floor, EIP-7825 per-transaction gas cap), for ML-DSA, Falcon and SLH-DSA, with today's Solidity verifiers and with proposed precompiles (EIP-8355, EIP-8052).
 
