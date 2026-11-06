@@ -88,7 +88,7 @@ def fig_breakdown(prjson, out, n=50):
 
 # ------------------------------------------------------------------ Fig. 4: device-signed roots
 def fig_device_root(on2, out):
-    rows = read(os.path.join(on2, "pq4_dr.csv"))
+    rows = read(os.path.join(on2, "pq6_dr.csv"))
     S = [("ECDSA", "ecrecover", "ECDSA secp256k1 (same design)", dict(color=OK["black"], marker="o", ls="-")),
          ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, precompile EIP-8355", dict(color=OK["blue"], marker="s", ls="-")),
          ("Falcon-512", "Precompile EIP-8052", "Falcon-512, precompile EIP-8052", dict(color=OK["orange"], marker="^", ls="-")),

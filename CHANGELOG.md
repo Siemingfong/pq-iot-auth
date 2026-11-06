@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.4 (fourth self-review; arXiv v2)
+- `PQAnchor4.sol`: sliding-window epochs and sequence numbers (192 values, same storage slot) so that reordered roots are accepted; batch leaves bind device, epoch and count; invalid devices are skipped instead of reverting the batch; registration nonce and PQ-authorized revocation; packed calldata path; no-verification baseline.
+- `pq_gasbench5.mjs`, `enc_fix.mjs`: ABI vs packed encoding (with a check that no device or record was skipped), epoch reordering test, no-verification baseline, cost-model points, 40-signature LMS statistics. Results in `onchain/results5/`.
+- `pq_gasbench6.mjs`: all main tables re-measured on the final contract (incl. ML-DSA-87). Results in `onchain/results6/`.
+- `grind_lms.py`: RFC 8554 signer that grinds the randomizer to chosen Winternitz step counts; `lms_step_distribution.py`: exact step distribution for honest signers.
+
 ## v2.3 (third self-review)
 - `LMSVerifier3.sol`: LMS/HSS for SHA-256 (n = 32) and SHA-256/192 (n = 24, SP 800-208); `test_lms3.mjs` checks valid, tampered and wrong-message inputs.
 - `pq_gasbench4.mjs`: all device-root variants re-measured on `PQAnchor3` (relaxed epoch rule), with P-256 (EIP-7951) and hybrid ECDSA + ML-DSA-44 / Falcon-512 rows, LMS n = 24, and the LMS worst-case regression with R^2. Results in `onchain/results4/`.
