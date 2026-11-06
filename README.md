@@ -1,8 +1,8 @@
 # pq-iot-auth
 
-[![arXiv](https://img.shields.io/badge/arXiv-2611.08108-b31b1b.svg)](https://arxiv.org/abs/2611.08108) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23996908.svg)](https://doi.org/10.5281/zenodo.23996908)
+[![arXiv](https://img.shields.io/badge/arXiv-2611.08108-b31b1b.svg)](https://arxiv.org/abs/2611.08108) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23998670.svg)](https://doi.org/10.5281/zenodo.23998670)
 
-Archived releases: v2.5 [10.5281/zenodo.23996908](https://doi.org/10.5281/zenodo.23996908) (journal submission); v2.4 [10.5281/zenodo.23995262](https://doi.org/10.5281/zenodo.23995262); v2.3 [10.5281/zenodo.23970176](https://doi.org/10.5281/zenodo.23970176) (arXiv v1); v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084).
+Archived releases: v2.6 [10.5281/zenodo.23998670](https://doi.org/10.5281/zenodo.23998670) (journal submission); v2.5 [10.5281/zenodo.23996908](https://doi.org/10.5281/zenodo.23996908); v2.4 [10.5281/zenodo.23995262](https://doi.org/10.5281/zenodo.23995262); v2.3 [10.5281/zenodo.23970176](https://doi.org/10.5281/zenodo.23970176) (arXiv v1); v2.2 [10.5281/zenodo.23969084](https://doi.org/10.5281/zenodo.23969084).
 
 Code and data for the article ([arXiv:2611.08108](https://arxiv.org/abs/2611.08108)) **"Post-Quantum Authentication of IoT Data on Ethereum: Signatures, the Calldata Floor, and the Case for Device-Signed Merkle Roots"** (M.-F. Sie, 2026, manuscript submitted).
 

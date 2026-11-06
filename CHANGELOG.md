@@ -1,11 +1,11 @@
 # Changelog
 
-## Unreleased (sixth and seventh self-reviews)
+## v2.6 (journal submission, 2026-11-06)
 - `offchain/analysis_round7.py`: commit-now-verify-later costs, LoRaWAN record-size/burst/loss analysis, floor-price sweep, SLH-DSA estimate.
 - `RFCTest.sol`, `test_rfc.mjs`, `rfc8554_vectors.json`: the Solidity LMS/HSS verifier passes the RFC 8554 Appendix F test vectors; differential fuzzing with 1,200 structurally mutated signatures (none accepted).
 - `pq_gasbench9.mjs`: per-record signatures with HSS H10/H10 (the configuration that lasts at 144 signatures per day) and LMS-H15 with SHA-256/192. Results in `onchain/results9/`.
 
-## v2.5 (journal submission, 2026-11-06)
+## v2.5 (2026-11-06)
 - `PQAnchor5.sol`: Merkle hashing in place (no memory growth per hash), leaves copied with calldatacopy in the packed path, P-256 verified for real via the EIP-7951 precompile, no key load in no-verification modes.
 - `pq_gasbench7.mjs`: all main tables re-measured on PQAnchor5, with real P-256 and per-record cost at the largest batch; every transaction checked for skipped devices/records. Results in `onchain/results7/`.
 - `pq_gasbench8.mjs`: long-lived LMS configurations (H15, HSS H10/H10 for n = 32 and n = 24), registration and revocation incl. RA keys (ML-DSA-44 priced, HSS executed), ABI vs packed, corrected no-verification baseline, epoch test, model points with exact tokens and execution. Results in `onchain/results8/`.

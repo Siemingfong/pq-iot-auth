@@ -88,7 +88,7 @@ def fig_breakdown(prjson, out, n=50):
 
 # ------------------------------------------------------------------ Fig. 4: device-signed roots
 def fig_device_root(on2, out):
-    rows = read(os.path.join(on2, "pq6_dr.csv"))
+    rows = read(os.path.join(on2, "pq7_dr.csv"))
     S = [("ECDSA", "ecrecover", "ECDSA secp256k1 (same design)", dict(color=OK["black"], marker="o", ls="-")),
          ("ML-DSA-44", "Precompile EIP-8355", "ML-DSA-44, precompile EIP-8355", dict(color=OK["blue"], marker="s", ls="-")),
          ("Falcon-512", "Precompile EIP-8052", "Falcon-512, precompile EIP-8052", dict(color=OK["orange"], marker="^", ls="-")),
@@ -104,7 +104,7 @@ def fig_device_root(on2, out):
         if r1:
             tx = int(r1[0]["tx_gas"]); ks = [1, 10, 100, 1000, 10000]
             b.plot(ks, [tx / (10 * k) for k in ks], mfc="white", **st)
-    for ax, t in ((a, "(a) leaves posted (DR-L)"), (b, "(b) root only (DR-0); PQ keys stored on-chain")):
+    for ax, t in ((a, "(a) leaves posted (DR-L)"), (b, "(b) root only (DR-0 / DR-0C)")):
         ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xticks([1, 10, 100, 1000, 10000]); ax.set_xticklabels(["1", "10", "100", "1,000", "10,000"])
         ax.yaxis.set_major_formatter(thousands); ax.yaxis.set_minor_formatter(NullFormatter())
         ax.grid(True, which="major", lw=0.4, color="0.85"); ax.grid(True, which="minor", lw=0.25, color="0.93"); ax.set_axisbelow(True)
