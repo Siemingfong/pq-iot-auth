@@ -1,6 +1,7 @@
 # Changelog
 
-## Unreleased (sixth self-review)
+## Unreleased (sixth and seventh self-reviews)
+- `offchain/analysis_round7.py`: commit-now-verify-later costs, LoRaWAN record-size/burst/loss analysis, floor-price sweep, SLH-DSA estimate.
 - `RFCTest.sol`, `test_rfc.mjs`, `rfc8554_vectors.json`: the Solidity LMS/HSS verifier passes the RFC 8554 Appendix F test vectors; differential fuzzing with 1,200 structurally mutated signatures (none accepted).
 - `pq_gasbench9.mjs`: per-record signatures with HSS H10/H10 (the configuration that lasts at 144 signatures per day) and LMS-H15 with SHA-256/192. Results in `onchain/results9/`.
 
