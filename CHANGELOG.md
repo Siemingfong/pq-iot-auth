@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased (fifth self-review; to be released at journal submission)
+- `PQAnchor5.sol`: Merkle hashing in place (no memory growth per hash), leaves copied with calldatacopy in the packed path, P-256 verified for real via the EIP-7951 precompile, no key load in no-verification modes.
+- `pq_gasbench7.mjs`: all main tables re-measured on PQAnchor5, with real P-256 and per-record cost at the largest batch; every transaction checked for skipped devices/records. Results in `onchain/results7/`.
+- `pq_gasbench8.mjs`: long-lived LMS configurations (H15, HSS H10/H10 for n = 32 and n = 24), registration and revocation incl. RA keys (ML-DSA-44 priced, HSS executed), ABI vs packed, corrected no-verification baseline, epoch test, model points with exact tokens and execution. Results in `onchain/results8/`.
+- `offchain/lora_airtime.py`: LoRaWAN EU868 airtime, duty cycle and energy model.
+
 ## v2.4 (fourth self-review; arXiv v2)
 - `PQAnchor4.sol`: sliding-window epochs and sequence numbers (192 values, same storage slot) so that reordered roots are accepted; batch leaves bind device, epoch and count; invalid devices are skipped instead of reverting the batch; registration nonce and PQ-authorized revocation; packed calldata path; no-verification baseline.
 - `pq_gasbench5.mjs`, `enc_fix.mjs`: ABI vs packed encoding (with a check that no device or record was skipped), epoch reordering test, no-verification baseline, cost-model points, 40-signature LMS statistics. Results in `onchain/results5/`.

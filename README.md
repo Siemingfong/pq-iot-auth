@@ -14,10 +14,10 @@ Gas per record (revised version; device-signed roots compared with ECDSA in the 
 
 | Design | ECDSA | ML-DSA-44, precompile | LMS-H10-W4, Solidity (today) |
 |---|---:|---:|---:|
-| One signature per record, batches of 50 | 13,804 | 112,497 | 324,706 |
-| Device-signed roots, leaves posted, k = 1,000 | 1,474 | 1,553 | 1,797 |
-| Device-signed roots, leaves posted, k = 100 | 1,572 | 2,832 | 4,642 |
-| Device-signed roots, root only, k = 100 | 257 | 1,031 (key on-chain) | 3,291 |
+| One signature per record, batches of 50 | 13,413 | 112,508 | 322,358 |
+| Device-signed roots, leaves posted, k = 1,000 | 1,290 | 1,435 | 1,389 |
+| Device-signed roots, leaves posted, k = 100 | 1,385 | 2,832 | 4,212 |
+| Device-signed roots, root only, k = 100 | 254 | 1,031 (key on-chain) | 3,359 |
 
 Post-quantum device authentication is deployable today (LMS verified in Solidity) at a premium that device-side batching keeps to a few thousand gas per record.
 
@@ -34,6 +34,9 @@ onchain/ (revision)
   validate_exact.mjs            empirical check of the verification-cost substitution
   dr_k1000.mjs                  DR-L at k = 1,000 with 4 devices per transaction
   results2/                     revision results (CSV/JSON)
+  PQAnchor5.sol, pq_gasbench7.mjs, pq_gasbench8.mjs, results7/, results8/
+                                current (unreleased): in-place Merkle, real P-256, long-lived LMS/HSS,
+                                registration/revocation, floor-aware model points
   PQAnchor4.sol, pq_gasbench5.mjs, pq_gasbench6.mjs, enc_fix.mjs, grind_lms.py,
   lms_step_distribution.py, results5/, results6/
                                 v2.4: final contract (reordering-tolerant epochs, packed calldata),

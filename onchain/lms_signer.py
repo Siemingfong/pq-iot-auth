@@ -11,7 +11,9 @@ keys = {}
 def key(name):
     if name not in keys:
         t = time.time()
-        if name.startswith("HSS"):
+        if name == "HSS-M24-H10W4x2":
+            keys[name] = HSS_Priv([H["M24H10"], H["M24H10"]], W["N24W4"], num_cores=4)
+        elif name.startswith("HSS"):
             keys[name] = HSS_Priv([H["H10"], H["H10"]], W["W4"], num_cores=4)
         else:
             if name.startswith("M24"):
