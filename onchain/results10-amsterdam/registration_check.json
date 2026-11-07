@@ -1,0 +1,35 @@
+{
+  "fork": "amsterdam",
+  "registration": [
+    {
+      "scheme": "ECDSA",
+      "per_device_mean": 127120,
+      "min": 127098,
+      "max": 127122
+    },
+    {
+      "scheme": "P-256",
+      "per_device_mean": 127785,
+      "min": 127766,
+      "max": 127790
+    },
+    {
+      "scheme": "LMS-H10-W4",
+      "per_device_mean": 127622,
+      "min": 127622,
+      "max": 127622
+    },
+    {
+      "scheme": "LMS-H15-W4",
+      "per_device_mean": 127610,
+      "min": 127610,
+      "max": 127610
+    },
+    {
+      "scheme": "LMS-HSS-H10W4x2",
+      "per_device_mean": 127634,
+      "min": 127634,
+      "max": 127634
+    }
+  ]
+}

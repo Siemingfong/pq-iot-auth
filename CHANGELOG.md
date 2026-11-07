@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## Unreleased (v2.8)
+- Repository completed: all contracts, harnesses, results and figure sources (68 files were missing from earlier releases).
+- `onchain/results-sepolia/`: measurements on the Sepolia testnet (6 Nov 2026, Geth v1.17.9, 68 transactions). ECDSA and P-256 match the EthereumJS devnet-8 figures exactly, LMS/HSS within signature noise; registration within 12 gas and contract deployment identical.
+- `onchain/results-anvil-osaka/`: the same script on a local revm-based node under Osaka rules, reproducing the EthereumJS Osaka figures (independent EVM implementation).
+- `regcheck.mjs`, `deploycheck.mjs`: registration and deployment gas under EthereumJS devnet-8 for the comparison with Sepolia.
 - `onchain/sepolia_measure.mjs` and `.github/workflows/sepolia.yml`: gas measurement on the Sepolia testnet (ECDSA, P-256, LMS-H10, LMS-H15, HSS) using the same transaction builders as `pq_gasbench10.mjs`; manual GitHub Actions workflow with a dry-run default. Tested end to end on a local anvil node (revm, Osaka rules), where it reproduces the EthereumJS figures.
 
 ## v2.7 (journal submission, 2026-11-06)

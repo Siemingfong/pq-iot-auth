@@ -1,0 +1,671 @@
+{
+  "environment": {
+    "chain_id": 11155111,
+    "start_block": 12077747,
+    "block_gas_limit": "200000000",
+    "client": "Geth/v1.17.9-stable-9dffe6e9/linux-amd64/go1.25.14",
+    "solc": "0.8.28+commit.7893614a.Emscripten.clang",
+    "wallet": "0x77f5F9e52391EC5455b1D864014056ecd50F5474",
+    "started": "2026-11-06T16:30:08.302Z",
+    "finished": "2026-11-06T16:46:03.740Z",
+    "end_block": 12077827
+  },
+  "contracts": {
+    "anchor (ECDSA, P-256)": "0x800E02b51065157F60127228fE9303e793AeBbc7",
+    "LMSVerifier2": "0x425E4Dd001F1fB094Bb967D870b8E0AAD383f4d4",
+    "anchor (LMS)": "0x7eA37B6D552e452c17B9d90AD8a79da3f2fe8225"
+  },
+  "transactions": [
+    {
+      "label": "deploy anchor (ECDSA, P-256)",
+      "ok": true,
+      "gas_used": 13355618,
+      "hash": "0xfb18539503e4d7d2b035b03ef9ff8f84d4faf7be44d9c1c7297592e071863050",
+      "block": 12077749,
+      "calldata_bytes": 8786
+    },
+    {
+      "label": "deploy LMSVerifier2",
+      "ok": true,
+      "gas_used": 9189678,
+      "hash": "0x81cb6b88ddbe00d856a4da867f0ad8dc761e7771d135af0967add15c5bb17e4b",
+      "block": 12077750,
+      "calldata_bytes": 5834
+    },
+    {
+      "label": "deploy anchor (LMS)",
+      "ok": true,
+      "gas_used": 13355834,
+      "hash": "0x883ebd717524edfdafe6feb9c5d82efc518bbb3c5655873fe258978ced9a4fd9",
+      "block": 12077752,
+      "calldata_bytes": 8786
+    },
+    {
+      "label": "register ECDSA #0",
+      "ok": true,
+      "gas_used": 127110,
+      "hash": "0xb01eb902f322f7cfadfc6d2b33629695593addecb3eb94009ab37b5738544bf5",
+      "block": 12077753,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #1",
+      "ok": true,
+      "gas_used": 127110,
+      "hash": "0x67fe2819918c5396697dcfe1f0abb34eb2c354acc24532e2d301cf46a5913714",
+      "block": 12077754,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #2",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0x15f05b5741f894f14bedd1c915553e8b8e80b66258e324a28c665200a4c7e138",
+      "block": 12077755,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #3",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0xebdbd8524591e0bcb698001ed54cce47cd400d3351f852d6f2f79d10b570223d",
+      "block": 12077757,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #4",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0xd3e3b4754fcb62e9b2043ec644aa0478bfda4251273ab7cc01bb696fd00fa17b",
+      "block": 12077758,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #5",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0xb3267401850bc6d90f8c57f667e34b5d6429e0ce2952fcb0f9210a07d51aebd4",
+      "block": 12077759,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #6",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0x5944200fef4099a27be62786bd2c1adfc5f9905d02c765fcb6cc27d1383b8d4b",
+      "block": 12077760,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #7",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0x40d02ba51ea50aaa70151edf8d0cdeca7c60d60731b597aa2a4d0b186c0414bd",
+      "block": 12077763,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #8",
+      "ok": true,
+      "gas_used": 127110,
+      "hash": "0x9f3a0c0ca5cfd1d0ae8211af47790cf99d0834dec8d24f83d04baef60425dac9",
+      "block": 12077764,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "register ECDSA #9",
+      "ok": true,
+      "gas_used": 127122,
+      "hash": "0x0cc8a0c497fd9837684ac805af49c2595885a5c6b834e20d4c2d4c159227740f",
+      "block": 12077766,
+      "calldata_bytes": 132
+    },
+    {
+      "label": "DR-0 ECDSA warm-up",
+      "ok": true,
+      "gas_used": 1386212,
+      "hash": "0xcc0ec7c7dc0b511f9029300ea565862b67b6ca7aee97faf8bc99a93bd35c5f4b",
+      "block": 12077767,
+      "calldata_bytes": 4868
+    },
+    {
+      "label": "DR-0 ECDSA",
+      "ok": true,
+      "gas_used": 407556,
+      "hash": "0x45c012676331b949aafa4640b78acc07d65ac9dc9f4c23b1cb674812bfd7dcc4",
+      "block": 12077768,
+      "calldata_bytes": 4868
+    },
+    {
+      "label": "DR-L ECDSA",
+      "ok": true,
+      "gas_used": 2374552,
+      "hash": "0x571d0313e6fc5308b35367ba8426cbc30013ae5fdc291a5a25df64be63c53149",
+      "block": 12077769,
+      "calldata_bytes": 36868
+    },
+    {
+      "label": "PR ECDSA warm-up",
+      "ok": true,
+      "gas_used": 1384706,
+      "hash": "0xbe747f6cb906f305b4da7e9b981d8b5af3756ad37859826209e28137eeb31c11",
+      "block": 12077770,
+      "calldata_bytes": 5828
+    },
+    {
+      "label": "PR ECDSA",
+      "ok": true,
+      "gas_used": 1207192,
+      "hash": "0x4cbd186c6fdcf408ed51530e381abb86575ad649f19913a8e4ca4adce73f1eae",
+      "block": 12077771,
+      "calldata_bytes": 18628
+    },
+    {
+      "label": "register P-256 #0",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0xafd25ff7edba8c04a46f12cf08404eb4f98dc137d530eaeffd36b1f9a191e6ba",
+      "block": 12077772,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #1",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0xf9e37673ab226711d42d7af49fcfb28993edd0b3c1178c4c2769974932caa5ea",
+      "block": 12077773,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #2",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0x065cc3bfde6cf21dc43dd68438ee73d68b7f9cc35be575c2f0a56692c45e88cc",
+      "block": 12077774,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #3",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0xa13ae4d8c759b0450f63f5a4e3da7ce9d264ce8d7f76a1eaa7beca5817138161",
+      "block": 12077775,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #4",
+      "ok": true,
+      "gas_used": 127778,
+      "hash": "0xe196b926483bda2bfa2a84f403edb1277ac78398c1f036a62486efed3a4cf811",
+      "block": 12077776,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #5",
+      "ok": true,
+      "gas_used": 127778,
+      "hash": "0x878dcfdeac41b2dcbf10f3f5b7004d36932b415e8c9c34350c2fb09c06ba59b7",
+      "block": 12077777,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #6",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0xe6f7c15bafb2bc48d841cfc5e7885daca7dd3829df2e0d100d9a24d57ec6838d",
+      "block": 12077778,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #7",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0x849cdf46e04bcc4c3d6a870412287d20a5a45b42e0b5a7a6bddd9b492d3fdf9a",
+      "block": 12077780,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #8",
+      "ok": true,
+      "gas_used": 127778,
+      "hash": "0x803ea3e03ca1d2d13ba9cccc93f2bd807c4bdb701b2851f4da6c966e7ec93737",
+      "block": 12077781,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register P-256 #9",
+      "ok": true,
+      "gas_used": 127790,
+      "hash": "0x76df57d1f4aa43a9a03b815eeabadff2014dcdaa07a9597adffcf3d0ac8c4f08",
+      "block": 12077783,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "DR-0 P-256 warm-up",
+      "ok": true,
+      "gas_used": 1434302,
+      "hash": "0xabb6dbd32594eccf1397a95a82275ab9b6a93fe776557c65ea0259e99a84c614",
+      "block": 12077784,
+      "calldata_bytes": 4868
+    },
+    {
+      "label": "DR-0 P-256",
+      "ok": true,
+      "gas_used": 455598,
+      "hash": "0x0101946300a8bceed8c452c3b86c5751a9f4605cc4c1a2f900e10715cfc49fc8",
+      "block": 12077786,
+      "calldata_bytes": 4868
+    },
+    {
+      "label": "PR P-256 warm-up",
+      "ok": true,
+      "gas_used": 1432807,
+      "hash": "0xca4634af329f2f9c1b51a8ee05e9780e6e3bce12b175f785d0e081420149c697",
+      "block": 12077787,
+      "calldata_bytes": 5828
+    },
+    {
+      "label": "PR P-256",
+      "ok": true,
+      "gas_used": 1125272,
+      "hash": "0x856e4ff48c33998b20f307784e3d1ebcae29f1135ee4094018c00143ce0746b1",
+      "block": 12077788,
+      "calldata_bytes": 17348
+    },
+    {
+      "label": "register LMS-H10-W4 #0",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x4c50545b7fc29421a38f29096dd74aa00acc54e8f83b0304081c5d5364d22803",
+      "block": 12077789,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #1",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x6ac15a9113523251f044a2bbca1a90d7c2870c697fed5902769edca617a2a8a0",
+      "block": 12077790,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #2",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x526f01094fedcaffa85b1e67b5ed621666e2c6615cd1b3ce729112cdde1b00a5",
+      "block": 12077791,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #3",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x20751a3b7ad9ea72d4521cd7cac5b3552cb2e91311c5ebd742a9d00ad6b0f0cf",
+      "block": 12077792,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #4",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xe21d3ca91d9415754838ac4576d4788d0917cf41e8104ae0a3d8e9ab71c0c42a",
+      "block": 12077793,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #5",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x4828ca25343d123094bdadb350657c06e6d1f692912d9f2006091f20e0ed00e1",
+      "block": 12077794,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #6",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xd8281be1de617e0ee903b18e4573eb9a75894e0525bedf92fb0e80d2f731da08",
+      "block": 12077795,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #7",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x9aeeffd76bc832359b62f17b5d5fae792d0d0ca95ac0acd272484335f30869f1",
+      "block": 12077796,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #8",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x3a0a2a58a741a0473449a30c44b74ce7d902a3b5e4990d015b8ac92269220a37",
+      "block": 12077797,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H10-W4 #9",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xe9e8d5e4e2291a1c489698ba7b47f4a875dc3818a640f2ee1797ab684d71a4a4",
+      "block": 12077798,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "DR-0 LMS-H10-W4 warm-up",
+      "ok": true,
+      "gas_used": 4515146,
+      "hash": "0x428f9eeb0de7f02d933993d9d27ddd43257d3f357020e78d6b26e24b64ff67b2",
+      "block": 12077799,
+      "calldata_bytes": 29508
+    },
+    {
+      "label": "DR-0 LMS-H10-W4",
+      "ok": true,
+      "gas_used": 3545780,
+      "hash": "0xb76a0263c9aed21343b9f0416a769987569e66dda55aa1848e87d0c5bb58a28a",
+      "block": 12077800,
+      "calldata_bytes": 29508
+    },
+    {
+      "label": "register LMS-H15-W4 #0",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x987de00945bf26705957dbe916dca9aa1d1b0a5648d23094b2535ad4fa0414e9",
+      "block": 12077801,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #1",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x9dba2318d22f4705d7da4e8cf0226e506889ca1135fb323ecce107309c267cb4",
+      "block": 12077802,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #2",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x1e2e10dfe13ed9d78f644156f88dab61531ced29d012b03e48864b2a168a3367",
+      "block": 12077803,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #3",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x04557cd237e9d76b9444f349abddc683589544a025e6b9cc6a62aed595abffef",
+      "block": 12077804,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #4",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x2dd0ab6abbede3e6ded135e4fda5642eecf7b42b086873b54edfab373abd58ee",
+      "block": 12077805,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #5",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xee269e33111291a5427aec0bf68a6d4321c8e179cbb8d9fbe9c0574a943e8f24",
+      "block": 12077806,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #6",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x59cfe1f67abc01e8a6ae1828b0a0b9daf3c20f22204150bd8656946840306453",
+      "block": 12077807,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #7",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xb47b16cba8d713afb0a61a579e8b785c12b41c131010f983a0cf838ac5c20fa5",
+      "block": 12077808,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #8",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0x3e723c3ef8016fea081717f30ac333e978f4b0e9046bd809c9d98f46dd913454",
+      "block": 12077809,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-H15-W4 #9",
+      "ok": true,
+      "gas_used": 127622,
+      "hash": "0xc31b5bb65c977afae3d6f91698b4866f2f42edb354bf60b81a64e9bc5cda9eae",
+      "block": 12077810,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "DR-0 LMS-H15-W4 warm-up",
+      "ok": true,
+      "gas_used": 4488283,
+      "hash": "0x42a1b65d91e834f9eca05e13293e53d821fe3d11fb207f0d8e6dfc8314142855",
+      "block": 12077811,
+      "calldata_bytes": 31108
+    },
+    {
+      "label": "DR-0 LMS-H15-W4",
+      "ok": true,
+      "gas_used": 3665548,
+      "hash": "0x7e797a19354adabdcbdba16000578c56fd2a8f685b0503c7b91416472e8cad2d",
+      "block": 12077812,
+      "calldata_bytes": 31108
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #0",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0x63c2bed23d3d9bc89c1624fc59404e72debc550eacc17ee18e9338c8f76c727d",
+      "block": 12077813,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #1",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0xa557d3cabd1d5abeeea420ec8510b6a6a3ded811be983e21322c6c5e9e7025b1",
+      "block": 12077814,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #2",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0xf8fc154ac1fd3169c96216ef60b1df56b09b921c8eac37df04cf41210ae2ba53",
+      "block": 12077818,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #3",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0x5d8eebcb418738a7e35cdb351c75fc97d8cf12dacca986b3aec28069e989d46f",
+      "block": 12077819,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #4",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0x4f6bb86fcaa608dac7d3278a97b4daf084b20d6baa62c1978e9e4ca20bfe4c0c",
+      "block": 12077820,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #5",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0xa28d492fe6ef909074bbf04ff81af9fa7c39e2beaa11eeff68ca4bd12b670cfe",
+      "block": 12077821,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #6",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0x6ad18cd569006292ac96d645b3ec0c3f9fb67b64f6c5a384c782358e7a0a7c9c",
+      "block": 12077822,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #7",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0xb8cf9d6eaa84f9fc0fb5d220136de5c901128423681a3e2cb62a85f49ac55de4",
+      "block": 12077823,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #8",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0x1575c3fadba8bd12a49673e6e75b5fa0af02ea76455675083fea1e9507c93f90",
+      "block": 12077824,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "register LMS-HSS-H10W4x2 #9",
+      "ok": true,
+      "gas_used": 127634,
+      "hash": "0xb25a2aee392670a07bb9fdb002def220170c67d8db845aa0b52c038f11d80724",
+      "block": 12077825,
+      "calldata_bytes": 164
+    },
+    {
+      "label": "DR-0 LMS-HSS-H10W4x2 warm-up",
+      "ok": true,
+      "gas_used": 8005853,
+      "hash": "0x05ca724da8eb89022d581a0f3e1248e2487a5eb3ad267bfe586b0961f584d1bd",
+      "block": 12077826,
+      "calldata_bytes": 55108
+    },
+    {
+      "label": "DR-0 LMS-HSS-H10W4x2",
+      "ok": true,
+      "gas_used": 6969659,
+      "hash": "0x3ca335586faa730801593648964e32fddec8e523a3262b1569b7511f91778018",
+      "block": 12077827,
+      "calldata_bytes": 55108
+    }
+  ],
+  "measurements": [
+    {
+      "design": "registration (commitment)",
+      "scheme": "ECDSA",
+      "per_device": 127118
+    },
+    {
+      "design": "DR-0",
+      "scheme": "ECDSA",
+      "ok": true,
+      "tx_gas": 407556,
+      "records": 1000,
+      "per_record": 408,
+      "hash": "0x45c012676331b949aafa4640b78acc07d65ac9dc9f4c23b1cb674812bfd7dcc4",
+      "block": 12077768
+    },
+    {
+      "design": "DR-L",
+      "scheme": "ECDSA",
+      "ok": true,
+      "tx_gas": 2374552,
+      "records": 1000,
+      "per_record": 2375,
+      "hash": "0x571d0313e6fc5308b35367ba8426cbc30013ae5fdc291a5a25df64be63c53149",
+      "block": 12077769
+    },
+    {
+      "design": "PR",
+      "scheme": "ECDSA",
+      "ok": true,
+      "tx_gas": 1207192,
+      "records": 50,
+      "per_record": 24144,
+      "hash": "0x4cbd186c6fdcf408ed51530e381abb86575ad649f19913a8e4ca4adce73f1eae",
+      "block": 12077771
+    },
+    {
+      "design": "registration (commitment)",
+      "scheme": "P-256",
+      "per_device": 127786
+    },
+    {
+      "design": "DR-0",
+      "scheme": "P-256",
+      "ok": true,
+      "tx_gas": 455598,
+      "records": 1000,
+      "per_record": 456,
+      "hash": "0x0101946300a8bceed8c452c3b86c5751a9f4605cc4c1a2f900e10715cfc49fc8",
+      "block": 12077786
+    },
+    {
+      "design": "PR",
+      "scheme": "P-256",
+      "ok": true,
+      "tx_gas": 1125272,
+      "records": 50,
+      "per_record": 22505,
+      "hash": "0x856e4ff48c33998b20f307784e3d1ebcae29f1135ee4094018c00143ce0746b1",
+      "block": 12077788
+    },
+    {
+      "design": "registration (commitment)",
+      "scheme": "LMS-H10-W4",
+      "per_device": 127622
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H10-W4",
+      "ok": true,
+      "tx_gas": 3545780,
+      "records": 1000,
+      "per_record": 3546,
+      "hash": "0xb76a0263c9aed21343b9f0416a769987569e66dda55aa1848e87d0c5bb58a28a",
+      "block": 12077800
+    },
+    {
+      "design": "registration (commitment)",
+      "scheme": "LMS-H15-W4",
+      "per_device": 127622
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H15-W4",
+      "ok": true,
+      "tx_gas": 3665548,
+      "records": 1000,
+      "per_record": 3666,
+      "hash": "0x7e797a19354adabdcbdba16000578c56fd2a8f685b0503c7b91416472e8cad2d",
+      "block": 12077812
+    },
+    {
+      "design": "registration (commitment)",
+      "scheme": "LMS-HSS-H10W4x2",
+      "per_device": 127634
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-HSS-H10W4x2",
+      "ok": true,
+      "tx_gas": 6969659,
+      "records": 1000,
+      "per_record": 6970,
+      "hash": "0x3ca335586faa730801593648964e32fddec8e523a3262b1569b7511f91778018",
+      "block": 12077827
+    }
+  ]
+}
