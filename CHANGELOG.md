@@ -1,10 +1,10 @@
 # Changelog
 
-## Unreleased (v2.9)
+## v2.9 (journal submission, 2026-11-07)
 - `HybridLMSVerifier.sol`: hybrid ECDSA + LMS verifier (AND combiner) that forwards the LMS part to `LMSVerifier2`.
 - `pq_gasbench11.mjs`: hybrid ECDSA + LMS-H15 root-only design end to end; exact cost of the ECDSA half measured by passing identical LMS signatures through the hybrid and plain verifiers (5,032 gas of execution + 85 bytes per device, Osaka and Amsterdam); largest per-record HSS H10/H10 batch by bisection (25 under Osaka, 21 under Amsterdam). Results in `onchain/results11-osaka/` and `onchain/results11-amsterdam/`.
 
-## v2.8 (journal submission, 2026-11-06)
+## v2.8 (2026-11-06)
 - Repository completed: all contracts, harnesses, results and figure sources (68 files were missing from earlier releases).
 - `onchain/results-sepolia/`: measurements on the Sepolia testnet (6 Nov 2026, Geth v1.17.9, 68 transactions). ECDSA and P-256 match the EthereumJS devnet-8 figures exactly, LMS/HSS within signature noise; registration within 12 gas and contract deployment identical.
 - `onchain/results-anvil-osaka/`: the same script on a local revm-based node under Osaka rules, reproducing the EthereumJS Osaka figures (independent EVM implementation).
