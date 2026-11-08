@@ -1,0 +1,42 @@
+{
+  "fork": "amsterdam",
+  "hybrid": [
+    {
+      "design": "DR-0",
+      "scheme": "Hybrid LMS-H15 + ECDSA",
+      "k": 100,
+      "per_record": 3693,
+      "per_device": 369315,
+      "registration_per_device": 128000
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H15-W4",
+      "k": 100,
+      "per_record": 3500,
+      "per_device": 350019,
+      "registration_per_device": 127622
+    }
+  ],
+  "hybrid_overhead": {
+    "per_verification_execution_gas": [
+      7932,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032
+    ],
+    "mean": 5322,
+    "extra_calldata_bytes": 85
+  },
+  "hss_pr_max": {
+    "max_records": 21,
+    "tx_gas": 14314550,
+    "per_record": 681645
+  }
+}

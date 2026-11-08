@@ -1,0 +1,42 @@
+{
+  "fork": "osaka",
+  "hybrid": [
+    {
+      "design": "DR-0",
+      "scheme": "Hybrid LMS-H15 + ECDSA",
+      "k": 100,
+      "per_record": 3567,
+      "per_device": 356669,
+      "registration_per_device": 46080
+    },
+    {
+      "design": "DR-0",
+      "scheme": "LMS-H15-W4",
+      "k": 100,
+      "per_record": 3501,
+      "per_device": 350144,
+      "registration_per_device": 45702
+    }
+  ],
+  "hybrid_overhead": {
+    "per_verification_execution_gas": [
+      7532,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032,
+      5032
+    ],
+    "mean": 5282,
+    "extra_calldata_bytes": 85
+  },
+  "hss_pr_max": {
+    "max_records": 25,
+    "tx_gas": 16436748,
+    "per_record": 657470
+  }
+}
