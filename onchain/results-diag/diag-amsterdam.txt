@@ -1,0 +1,12 @@
+deployed
+keygen H15-W4 17.5s
+run 0: 3623 gas/record, mean steps 513.0
+run 1: 3651 gas/record, mean steps 522.0
+run 2: 3618 gas/record, mean steps 511.5
+run 3: 3633 gas/record, mean steps 516.0
+run 4: 3670 gas/record, mean steps 528.0
+run 5: 3576 gas/record, mean steps 498.0
+run 6: 3637 gas/record, mean steps 517.5
+run 7: 3514 gas/record, mean steps 478.5
+slope 314.8 gas per step per device; residual sd 17.9 gas per device; predicted per record at 505.9 steps: 3601
+EXIT 0
