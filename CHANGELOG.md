@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased (v2.10)
+## v2.10 (journal submission, 2026-11-08)
 - `pq_diag.mjs`: eight LMS-H15 root-only batches per rule set, each signature's exact LMOTS step count computed from its randomizer and message (RFC 8554); regression of gas on steps gives 315 gas per step and device (residual 12-18 gas) and expected costs at the mean of 505.9 steps of 3,446 gas per record (Osaka) and 3,601 (Glamsterdam devnet-8). Logs in `onchain/results-diag/`.
 
-## v2.9 (journal submission, 2026-11-07)
+## v2.9 (2026-11-07)
 - `HybridLMSVerifier.sol`: hybrid ECDSA + LMS verifier (AND combiner) that forwards the LMS part to `LMSVerifier2`.
 - `pq_gasbench11.mjs`: hybrid ECDSA + LMS-H15 root-only design end to end; exact cost of the ECDSA half measured by passing identical LMS signatures through the hybrid and plain verifiers (5,032 gas of execution + 85 bytes per device, Osaka and Amsterdam); largest per-record HSS H10/H10 batch by bisection (25 under Osaka, 21 under Amsterdam). Results in `onchain/results11-osaka/` and `onchain/results11-amsterdam/`.
 
